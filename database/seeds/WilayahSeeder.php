@@ -11,6 +11,6 @@ class WilayahSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(file_get_contents('database/seeds/indonesia.sql'));
+        DB::unprepared(file_get_contents('database/seeds/db_rajaongkir.sql'));
     }
 }

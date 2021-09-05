@@ -15,7 +15,6 @@ class SliderController extends Controller
         return view('admin.slider.index',$data);
     }
 
-    /**
     public function addSlider(Request $request)
     {
         if($request->status == 1){

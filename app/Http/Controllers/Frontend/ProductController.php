@@ -17,8 +17,8 @@ class ProductController extends Controller
     {
 
         $data['setting']        = Setting::find(1);
-        $data['all']            = Product::all();
-        $data['terlaris']       = Product::paginate(3);
+        $data['all']            = Product::paginate(4);
+        $data['new_products']   = Product::orderBy('id', 'asc')->paginate(6);
         $data['categories']     = Category::all();
         return view('frontend.product.index',$data);
     }
@@ -35,8 +35,8 @@ class ProductController extends Controller
         $category = Category::where('slug',$slug)->first();
 
         $data['setting']        = Setting::find(1);
-        $data['all']            = Product::where('category_id',$category->id)->get();
-        $data['terlaris']       = Product::paginate(3);
+        $data['all']            = Product::where('category_id',$category->id)->paginate(6);
+        $data['new_products']   = Product::paginate(4);
         $data['categories']     = Category::all();
 
         return view('frontend.product.index',$data);
@@ -45,8 +45,8 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $data['setting']        = Setting::find(1);
-        $data['all']            = Product::where('name_product', 'LIKE', "%$request->search%")->get();
-        $data['terlaris']       = Product::paginate(3);
+        $data['all']            = Product::where('name_product', 'LIKE', "%$request->search%")->paginate(6);
+        $data['new_products']   = Product::paginate(4);
         $data['categories']     = Category::all();
 
         return view('frontend.product.index',$data);

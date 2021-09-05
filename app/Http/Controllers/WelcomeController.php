@@ -18,7 +18,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $data['setting']        = Setting::find(1);
-        $data['sliders']        = Slider::all();
+        $data['product']        = Product::orderBy('id', 'asc')->paginate(8);
+        $data['sliders']        = Slider::where('status', 0)->get();
+        $data['utama']          = Slider::where('status', 1)->first();
 
         return view('welcome',$data);
     }

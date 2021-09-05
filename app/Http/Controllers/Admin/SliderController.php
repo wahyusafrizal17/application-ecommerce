@@ -8,37 +8,26 @@ use App\Models\Slider;
 
 class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['sliders'] = Slider::all();
+        $data['utama'] = Slider::where('status', 1)->first();
+        $data['sliders'] = Slider::where('status', 0)->get();
         return view('admin.slider.index',$data);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addSlider(Request $request)
     {
-        return view('admin.slider.create');
-    }
+        if($request->status == 1){
+            $model = Slider::where('status', 1)->first();
+            if(!empty($model)){
+                $model->status = 0;
+                $model->save();
+            }
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+
         $input = $request->all();
-
         if($request->hasFile('image')){
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();    
@@ -52,72 +41,18 @@ class SliderController extends Controller
 
         alert()->success('Data berhasil ditambahkan' , 'Success');
         return redirect('administrator/slider');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function deleteSlider(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['slider'] = Slider::find($id);
-        return view('admin.slider.edit',$data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $slider = Slider::find($id);
-        
-        $input = $request->all();
-
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();    
-            $destinationPath = 'assets/img/slider';
-            $file->move($destinationPath,$file->getClientOriginalName());
-
-            $input['image'] = $fileName;
+        $data = Slider::find($request->id);
+        if($data){
+            if(!empty($data->image)){
+                unlink('assets/img/slider/'.$data->image);
+            }
+            $data->delete();
         }
-        
-        $slider->update($input);
 
-        alert()->success('Data berhasil diubah' , 'Success');
-        return redirect('administrator/Slider');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $slider = Slider::find($id);
-        $slider->delete();
-
-        alert()->success('Data berhasil diubah' , 'Success');
-        return redirect('administrator/Slider');
+        return "success";
     }
 }

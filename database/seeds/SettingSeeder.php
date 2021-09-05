@@ -21,9 +21,9 @@ class SettingSeeder extends Seeder
             'link_facebook' => 'https://www.facebook.com/wahyusafrizal74',
             'apikey_rajaongkir' => '37c455227198d75cfdf0782e2fc92894',
             'apikey_cekresi' => 'b0ed238649de4fce157d7540377b5a419258262a73e561af2238aaabc5a9e83e',
-            'province_id' => 21,
-            'city_id' => 7,
-            'district_id' => 83,
+            'province_id' => 9,
+            'city_id' => 107,
+            'district_id' => 1471,
             'address' => 'Bandung', 
             'description' => 'sample', 
             'logo' => 'sample.png'

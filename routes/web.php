@@ -19,7 +19,6 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('administrator')->group(function () {
     Route::get('dashboard','Admin\DashboardController@index')->name('admin.dashboard');
-    Route::resource('slider','Admin\SLiderController');
     Route::resource('category','Admin\CategoryController');
     Route::resource('card','Admin\CardController');
     Route::resource('product','Admin\ProductController');
@@ -29,6 +28,10 @@ Route::prefix('administrator')->group(function () {
     Route::resource('setting','Admin\SettingController');
     Route::resource('customer','Admin\CustomerController');
     Route::resource('transaction','Admin\TransactionController');
+
+    Route::get('slider','Admin\SliderController@index')->name('slider.index');
+    Route::post('slider','Admin\SliderController@addSlider')->name('add.slider');
+    Route::post('slider/delete','Admin\SliderController@deleteSlider')->name('delete.slider');
 
     Route::post('send-id-transaction', 'Admin\TransactionController@sendId')->name('send-id-transaction');
     Route::post('save-resi', 'Admin\TransactionController@saveResi')->name('save-resi');

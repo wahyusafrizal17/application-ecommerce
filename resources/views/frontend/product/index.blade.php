@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('title','Manage Slider Image')
 @section('content')
+
+<style>
+  .pagination{
+    display: flex;
+  }
+  .page-item.active .page-link{
+    background-color: #F7941D;
+    border-color: #F7941D;
+  }
+</style>
+
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
   <div class="container">
@@ -36,10 +47,10 @@
             
             <!-- Single Widget -->
             <div class="single-widget recent-post">
-              <h3 class="title">Product Terlaris</h3>
+              <h3 class="title">Produk Terlaris</h3>
               <!-- Single Post -->
   
-              @foreach($terlaris as $row)
+              @foreach($new_products as $row)
               @if(!empty(hitung_stok_product($row->id)[0]->qty)) 
               <div class="single-post first">
                 <div class="image">
@@ -72,12 +83,8 @@
             <div class="shop-top">
               <div class="shop-shorter">
                 <div class="single-shorter">
-                  <label>Sort By :</label>
-                  <select>
-                    <option selected="selected">Name</option>
-                    <option>Price</option>
-                    <option>Size</option>
-                  </select>
+                  <label><div id="watch"></div></label>
+                  <label>- {{ date('d-m-Y') }}</label>
                 </div>
               </div>
             </div>
@@ -97,7 +104,7 @@
                 </a>
                 <div class="button-head">
                   <div class="product-action-2" style="padding-left: 15px">
-                    <a title="Add to cart" href="products/{{ $row->slug }}">View Product</a>
+                    <a title="Add to cart" href="products/{{ $row->slug }}">Lihat</a>
                   </div>
                   <div style="float: right;padding-right: 15px;">
                     <span>@currency($row->sell_price)</span>
@@ -115,11 +122,33 @@
           </div>
           @endif
           @endforeach
-          
+        
+          <div class="col-md-12">
+            {{ $all->links() }}
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
-<!--/ End Product Style 1  -->
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+  $(document).ready(function(){
+      function clock() {
+        var now = new Date();
+        var secs = ('0' + now.getSeconds()).slice(-2);
+        var mins = ('0' + now.getMinutes()).slice(-2);
+        var hr = now.getHours();
+        var Time = hr + ":" + mins + ":" + secs;
+        document.getElementById("watch").innerHTML = Time;
+        requestAnimationFrame(clock);
+      }
+
+      requestAnimationFrame(clock);
+  });
+</script>
+
+@endpush

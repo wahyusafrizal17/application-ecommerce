@@ -48,8 +48,8 @@
               </td>
               <td class="product-des" data-title="Description"><span>{{ $transaction->name }}</span></td>
               <td class="total-amount" data-title="Total"><span>@currency($transaction->total)</span></td>
-              <td class="total-amount" data-title="Total"><span> SEDANG {{ $transaction->status }}</span></td>
-              @if($transaction->status == "DITERIMA")
+              <td class="total-amount" data-title="Total"><span>{{ $transaction->status }}</span></td>
+              @if($transaction->status == "DITERIMA" || $transaction->status == "DITOLAK")
               <td class="total-amount" data-title="Total">
                 <a href="products" class="btn-transaksi">BELI LAGI</a>
               </td>

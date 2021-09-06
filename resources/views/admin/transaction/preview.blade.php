@@ -8,7 +8,7 @@
         <div class="row">
            <div class="col-md-12">
             <div class="card">
-              {{ Form::model($transaction,['url'=>route('transaction.update',['id'=>$transaction->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
+              {{ Form::model($transaction,['url'=>route('transaction.proses',['id'=>$transaction->nota]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
               <table class="table table-striped" style="background: #EBF5FB; border-color: white" border="1">
                   <tr>
                     <td colspan="3">
@@ -17,8 +17,8 @@
                           <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                             <div class="col-lg-12 d-block">
                               <div class="row d-flex">
-                                <div class="col-md-12 pr-4 d-flex topper align-items-center">
-                                  <span class="text">PROFIL DATA ANDA</span>
+                                <div class="col-md-12 pr-4 d-flex topper align-items-center text-white">
+                                  <span class="text">RINCIAN PESANAN</span>
                                 </div>
                               </div>
                             </div>
@@ -28,7 +28,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <th width="250">Nota</th>
+                    <th width="250">ID Transaksi</th>
                     <td width="50">:</td>
                     <td>{{ $transaction->nota }} </td>
                   </tr>
@@ -69,8 +69,8 @@
                             <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                               <div class="col-lg-12 d-block">
                                 <div class="row d-flex">
-                                  <div class="col-md-12 pr-4 d-flex topper align-items-center">
-                                    <span class="text">PRODUCT YANG DI PESAN</span>
+                                  <div class="col-md-12 pr-4 d-flex topper align-items-center text-white">
+                                    <span class="text">PRODUK YANG DI PESAN</span>
                                   </div>
                                 </div>
                               </div>
@@ -121,7 +121,7 @@
                           <div class="row no-gutters d-flex align-items-start align-items-center px-3 px-md-0">
                             <div class="col-lg-12 d-block">
                               <div class="row d-flex">
-                                <div class="col-md-12 pr-4 d-flex topper align-items-center">
+                                <div class="col-md-12 pr-4 d-flex topper align-items-center text-white">
                                   <span class="text">BUKTI TRANSFER</span>
                                 </div>
                               </div>
@@ -147,6 +147,7 @@
                     <td colspan="3">
                       <div class="row">
                         <div class="col-md-12 text-right">
+                          <button type="button" class="btn btn-danger btn-sm btn-tolak" data-id="{{ $transaction->id }}">TOLAK PESANAN</button>
                           <button type="submit" class="btn btn-success btn-sm">PROSES PESANAN</button>
                           <a href="{{ route('transaction.index') }}" class="btn btn-primary btn-sm">KEMBALI</a>
                         </div>
@@ -163,4 +164,45 @@
   </div>
 </div>
 </div>
+
+<div class="modal fade" id="run-topup-bypass-modal" tabindex="-1" aria-labelledby="run-topup-bypass-modalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog" style="position: absolute;top: 160px;right: 438px;">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <div id="run-topup-bypass-modal-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+  
+  $(".btn-tolak").click(function() {
+    var id = $(this).data('id');
+    $.ajax({
+        url: '{{ route('transaction.tolak') }}',
+        method: 'POST',
+        cache: false,
+        data: {
+         "_token": "{{ csrf_token() }}",
+         "id" :id
+        },
+        beforeSend: function() {
+        $('#run-topup-bypass-modal').modal('show');
+        $('#run-topup-bypass-modal').find('.close').attr('disabled', true);
+        $('#run-topup-bypass-modal-content').html('<p class="mt-3">Data sedang diprosess, mohon jangan tutup halaman ini.</p>');
+        $("#exampleModal").modal('toggle');
+         },
+        success: function(data){
+        $("#run-topup-bypass-modal").modal('toggle');
+          window.location.href = '/administrator/transaction';
+        }
+    });
+  });
+});
+
+</script>
+@endpush

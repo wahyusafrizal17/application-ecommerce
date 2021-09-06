@@ -57,6 +57,8 @@
 								<div class="tab-single">
 									<div class="row">
 										@foreach($product as $row)
+										@if(hitung_stok_product($row->id)[0]->qty - hitung_stok_product_keluar($row->id)[0]->qty > 0)
+										@if(!empty(hitung_stok_product($row->id)[0]->qty))
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12" align="center">
 											<div class="single-product">
 												<div class="product-img">
@@ -81,6 +83,8 @@
 												  </div>
 											</div>
 										</div>
+										@endif
+										@endif
 										@endforeach
 
 										<div class="col-md-12 text-center mt-5">

@@ -32,7 +32,7 @@ span{
                       </div>
                    </div>
                    <div class="card-body">
-                     @if(empty($utama))
+                     @if(empty($utama) && empty($sliders))
                         <div align="center">
                            data slider masih kosong
                         </div>
@@ -40,7 +40,7 @@ span{
                          <div class="row">
                            @if(!empty($utama))
                            <div class="col-md-4" style="padding-bottom: 10px">
-                              <div class="box-slider" style="background-image: url('/assets/img/slider/{{$utama->image}}');background-size: cover;">
+                              <div class="box-slider sliderAction" data-id="{{ $utama->id }}" style="background-image: url('/assets/img/slider/{{$utama->image}}');background-size: cover;">
                                  <span>slider utama</span>
                               </div>
                            </div>
@@ -107,6 +107,7 @@ span{
 <script>
    $(".sliderAction").click(function() {
       var id = $(this).data('id');
+      console.log(id);
       swal({
          title: 'Apakah kamu yakin ?',
          text: "Data akan dihapus secara permanen!",

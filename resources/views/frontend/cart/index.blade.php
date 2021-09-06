@@ -16,6 +16,16 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="run-topup-bypass-modal" tabindex="-1" aria-labelledby="run-topup-bypass-modalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 415px;right: -361px;border-radius: 10px;">
+      <div class="modal-body text-center" style="height: 100px;padding-top: 20px">
+        <div id="run-topup-bypass-modal-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- End Breadcrumbs -->
 <!-- Start Checkout -->
 <section class="shop checkout section">
@@ -128,7 +138,7 @@
                     </div>
 
                     <div class="form-group">
-                      <button type="submit" class="btn">Proses</button>
+                      <button type="submit" class="btn" id="buttonSubmit">Proses</button>
                     </div>
                     
                   </div>
@@ -159,16 +169,17 @@
                   </a>
                   <div class="button-head">
                     <div class="product-action-2" style="padding-left: 15px">
-                      <a title="Add to cart" href="products/{{ $row->slug }}">View Product</a>
+                      <a title="Add to cart" href="products/{{ $row->slug }}">LIHAT</a>
+                    </div>
+                    <div style="float: right;padding-right: 15px;">
+                      <span>@currency($row->sell_price)</span>
                     </div>
                   </div>
                 </div>
                 
                 <div class="product-content">
                   <h3><a href="products/{{ $row->slug }}" class="text-white">{{ $row->name_product }}</a></h3>
-                  <div class="product-price">
-                    <span>@currency($row->sell_price)</span>
-                  </div>
+                  
                 </div>
               </div>
                 @endforeach
@@ -227,9 +238,24 @@
         $.ajax({
             url: "/cost",
             cache: false,
-            data:"destination="+destination+"&weight=1000&courier="+courier,
+            data:"destination="+destination+"&courier="+courier,
+            beforeSend: function() {
+              $('#run-topup-bypass-modal').modal('show');
+              $('#run-topup-bypass-modal').find('.close').attr('disabled', true);
+              $('#run-topup-bypass-modal-content').html('<p class="mt-3">Data sedang diprosess, mohon jangan tutup halaman ini.</p>');
+              $("#exampleModal").modal('toggle');
+            },
             success: function(html){
+              if(html != ''){
+                $("#run-topup-bypass-modal").modal('toggle');
                 $("#cost").html(html);
+                $("#buttonSubmit").show();
+              }else{
+                $("#run-topup-bypass-modal").modal('toggle');
+                $('#cost').html('<p class="text-muted">Kurir tersebut sedang tidak tersedia saat ini, mohon pilih kurir lain.</p>');
+                $("#buttonSubmit").hide();
+              }
+              
             }
             });
     }

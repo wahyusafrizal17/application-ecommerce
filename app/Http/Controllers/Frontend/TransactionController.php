@@ -72,12 +72,6 @@ class TransactionController extends Controller
                 $c = Cart::where('id', $row->id)->first();
                 $c->is_active = 0;
                 $c->save();
-
-                $stock = new Stock();
-                $stock->product_id = $row->product_id;
-                $stock->qty = $row->qty;
-                $stock->status = "PENGELUARAN";
-                $stock->save();
             }
 
             $model = Checkout::where('id', $request->checkout_id)->first();

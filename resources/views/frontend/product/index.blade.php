@@ -51,6 +51,7 @@
               <!-- Single Post -->
   
               @foreach($new_products as $row)
+              @if(hitung_stok_product($row->id)[0]->qty - hitung_stok_product_keluar($row->id)[0]->qty > 0)
               @if(!empty(hitung_stok_product($row->id)[0]->qty)) 
               <div class="single-post first">
                 <div class="image">
@@ -69,6 +70,7 @@
                   </ul> --}}
                 </div>
               </div>
+              @endif
               @endif
               @endforeach
               <!-- End Single Post -->
@@ -94,6 +96,7 @@
         <div class="row">
 
           @foreach($all as $row)
+          @if(hitung_stok_product($row->id)[0]->qty - hitung_stok_product_keluar($row->id)[0]->qty > 0)
           @if(!empty(hitung_stok_product($row->id)[0]->qty)) 
           <div class="col-lg-4 col-md-6 col-12" align="center">
             <div class="single-product">
@@ -108,6 +111,7 @@
                   </div>
                   <div style="float: right;padding-right: 15px;">
                     <span>@currency($row->sell_price)</span>
+                    
                   </div>
                 </div>
               </div>
@@ -120,6 +124,7 @@
               </div>
             </div>
           </div>
+          @endif
           @endif
           @endforeach
         

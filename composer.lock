@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f50d43b3d91777d5998560f335b1fa57",
+    "content-hash": "d3ba7837b9b7ff9fd7db014721d2a44e",
     "packages": [
         {
             "name": "artogrig/laravel-make-service",

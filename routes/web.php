@@ -27,7 +27,6 @@ Route::prefix('administrator')->group(function () {
     Route::resource('user','Admin\UserController');
     Route::resource('setting','Admin\SettingController');
     Route::resource('customer','Admin\CustomerController');
-    Route::resource('transaction','Admin\TransactionController');
 
     Route::get('slider','Admin\SliderController@index')->name('slider.index');
     Route::post('slider','Admin\SliderController@addSlider')->name('add.slider');
@@ -49,6 +48,12 @@ Route::prefix('administrator')->group(function () {
     Route::post('save-product', 'Admin\ProductController@saveProduct')->name('save-product');
 
     Route::get('laporan', 'Admin\TransactionController@laporanIndex')->name('laporan.index');
+    Route::get('laporan/export', 'Admin\TransactionController@laporanExport')->name('laporan.export');
+
+    Route::get('transaction', 'Admin\TransactionController@index')->name('transaction.index');
+    Route::get('transaction/{nota}/preview', 'Admin\TransactionController@preview')->name('transaction.preview');
+    Route::put('transaction/{nota}/proses', 'Admin\TransactionController@proses')->name('transaction.proses');
+    Route::post('transaction/tolak', 'Admin\TransactionController@tolak')->name('transaction.tolak');
 });
 
 // ---------------- CART ------------

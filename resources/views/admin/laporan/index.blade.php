@@ -14,9 +14,9 @@
                             <h5 class="card-title">Laporan penjualan</h5>
                          </div>
                          <div class="col-md-6 text-right">
-                            <a href="#" class="btn btn-success btn-sm">
+                            <button type="button" id="export" class="btn btn-success btn-sm">
                             <i class="fa fa-file"></i> Export excel
-                            </a>
+                            </button>
                          </div>
                       </div>
                    </div>
@@ -59,4 +59,42 @@
     </div>
  </div>
  </div>
+
+ <div class="modal fade" id="run-topup-bypass-modal" tabindex="-1" aria-labelledby="run-topup-bypass-modalLabel" aria-hidden="true" data-backdrop="static">
+   <div class="modal-dialog" style="position: absolute;top: 160px;right: 438px;">
+     <div class="modal-content">
+       <div class="modal-body text-center">
+         <div id="run-topup-bypass-modal-content"></div>
+       </div>
+     </div>
+   </div>
+ </div>
 @endsection
+
+@push('scripts')
+
+<script>
+
+$(document).ready(function () {
+   $("#export").click(function() {
+    $.ajax({
+        url: '{{ route('laporan.export') }}',
+        method: 'GET',
+        cache: false,
+        beforeSend: function() {
+        $('#run-topup-bypass-modal').modal('show');
+        $('#run-topup-bypass-modal').find('.close').attr('disabled', true);
+        $('#run-topup-bypass-modal-content').html('<p class="mt-3">Data sedang diprosess, mohon jangan tutup halaman ini.</p>');
+        $("#exampleModal").modal('toggle');
+         },
+        success: function(data){
+        $("#run-topup-bypass-modal").modal('toggle');
+         window.location = '{{ route('laporan.export') }}';
+        }
+    });
+  });            
+ });
+
+</script>
+
+@endpush

@@ -81,7 +81,7 @@ class CheckoutController extends Controller
     {
 
         $transaction = New Transaction;
-        $transaction->nota    = "INV-".date("Ydish".$request->total);
+        $transaction->nota    = "EC".date('is').Auth::user()->id.date('h').$request->checkout_id;
         $transaction->checkout_id = $request->checkout_id;
         $transaction->total   = $request->total;
         $transaction->status  = "MENUNGGU PEMBAYARAN";

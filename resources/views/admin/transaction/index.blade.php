@@ -31,7 +31,7 @@
                             <thead>
                                <tr>
                                   <th style="width: 5%">No</th>
-                                  <th>Nota</th>
+                                  <th>ID Trasaksi</th>
                                   <th>Nama Pemesan</th>
                                   <th>Total</th>
                                   <th>Tanggal Pemesanan</th>
@@ -51,7 +51,7 @@
                                   <td>
                                      <div class="form-button-action">
                                         @if($transaction->status == 'DIPROSES')
-                                        <a href="{{ route('transaction.edit',['id'=>$transaction->id]) }}" data-toggle="tooltip" title="" class="btn btn-success btn-sm" data-original-title="Edit">
+                                        <a href="{{ route('transaction.preview',['id'=>$transaction->nota]) }}" data-toggle="tooltip" title="" class="btn btn-success btn-sm" data-original-title="Edit">
                                           PROSES
                                         </a>
                                         @elseif($transaction->status == 'DIKEMAS')
@@ -84,7 +84,14 @@
             <label for="exampleInputPassword1">Resi</label>
             <input type="text" class="form-control" id="resi" placeholder="389832*****77">
           </div>
-
+          <div class="form-group">
+            <label for="exampleInputPassword1">Pengiriman via</label>
+            <select id="courier" class="form-control">
+               <option value="jne" selected>JNE</option>
+               <option value="pos">POS Indonesia</option>
+               <option value="tiki">TIKI</option>
+            </select>
+          </div>
           <input type="hidden" id="id-transaction">
        </div>
        <div class="modal-footer">
@@ -129,6 +136,7 @@ $(document).ready(function() {
   $(".btn-simpan-resi").click(function() {
     var id = $("#id-transaction").val();
     var resi = $("#resi").val();
+    var courier = $("#courier").val();
     $.ajax({
         url: '{{ route('save-resi') }}',
         method: 'POST',
@@ -137,6 +145,7 @@ $(document).ready(function() {
          "_token": "{{ csrf_token() }}",
          "id" :id,
          "resi" : resi,
+         "courier" : courier
         },
         beforeSend: function() {
         $('#run-topup-bypass-modal').modal('show');

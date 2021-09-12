@@ -14,12 +14,12 @@
 			<div class="carousel-inner">
 			@if(!empty($utama))
 			  <div class="carousel-item active">
-				<img class="d-block w-100" src="{{ asset('assets/img/slider/'.$utama->image ) }}" alt="First slide" style="height: 550px">
+				<img class="d-block w-100 images-slider" src="{{ asset('assets/img/slider/'.$utama->image ) }}" alt="First slide">
 			  </div>
 			  @endif
 			  @foreach($sliders as $slider)
 			  <div class="carousel-item">
-				<img class="d-block w-100" src="{{ asset('assets/img/slider/'.$slider->image ) }}" alt="Second slide" style="height: 550px">
+				<img class="d-block w-100 images-slider" src="{{ asset('assets/img/slider/'.$slider->image ) }}" alt="Second slide">
 			  </div>
 			  @endforeach
 			</div>
@@ -38,7 +38,7 @@
 	<!-- Button trigger modal -->
 	<!-- Start Small Banner  -->
 	
-	<div class="product-area section">
+	<div class="product-area section padding-product">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
@@ -59,7 +59,7 @@
 										@foreach($product as $row)
 										@if(hitung_stok_product($row->id)[0]->qty - hitung_stok_product_keluar($row->id)[0]->qty > 0)
 										@if(!empty(hitung_stok_product($row->id)[0]->qty))
-										<div class="col-xl-3 col-lg-4 col-md-4 col-12" align="center">
+										<div class="col-md-3 col-6" align="center">
 											<div class="single-product">
 												<div class="product-img">
 													<a href="products/{{ $row->slug }}">

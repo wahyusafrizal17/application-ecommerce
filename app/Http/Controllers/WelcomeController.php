@@ -102,4 +102,9 @@ class WelcomeController extends Controller
 
         return view('frontend.pages.cek-ongkir', $data);
     }
+
+    public function profile()
+    {
+        return view('frontend.pages.profile');
+    }
 }

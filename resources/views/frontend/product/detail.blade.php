@@ -57,12 +57,25 @@
                         
                         <div class="size">
                             <div class="quantity">
-                                <!-- Input Order -->
                                 <div class="input-group">
+                                    <div class="button minus">
+                                        <button type="button" class="btn btn-primary btn-number" data-type="minus" data-field="quant[1]" disabled="disabled">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="100" value="1">
+                                    <div class="button plus">
+                                        <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Input Order -->
+                                {{-- <div class="input-group">
         
                                     <input type="number" style="width: 100%;height: 45px;" name="qty" class="form-control" placeholder="QTY...." required>
                    
-                                </div>
+                                </div> --}}
                                 <!--/ End Input Order -->
                             </div>
                             <div class="add-to-cart">

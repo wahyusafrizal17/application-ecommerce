@@ -46,10 +46,16 @@ class WilayahController extends Controller
         join products as p ON c.product_id = p.id
         where c.is_active = 1 and c.user_id = '.Auth::user()->id.'');
 
+        if($total_weight[0]->weight == null){
+            $ttl_weight = 1000;
+        }else{
+            $ttl_weight = $total_weight[0]->weight;
+        }
+
         $apikey         = $setting->apikey_rajaongkir;
         $origin         = $setting->city_id;
         $destination    = $request->destination;
-        $weight         = $total_weight[0]->weight;
+        $weight         = $ttl_weight;
         $courier        = $request->courier;
 
         $result = cekongkir($apikey,$origin,$destination,$weight,$courier);

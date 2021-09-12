@@ -283,7 +283,9 @@
 						<li class="nav-item submenu">
 							<a class="nav-link" href="#">
 								<i class="link-icon icon-docs"></i>
-								<span class="menu-title">Pesanan <sup class="notif-pesanan">{{ count(count_order()) }}</sup></span>
+								<span class="menu-title">Pesanan 
+									{{-- <sup class="notif-pesanan">{{ count(count_order()) }}</sup> --}}
+								</span>
 							</a>
 							<div class="navbar-dropdown animated fadeIn">
 								<ul>
@@ -306,15 +308,15 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('laporan.index') }}">
-								<i class="link-icon icon-docs"></i>
-								<span class="menu-title">Laporan</span>
+							<a class="nav-link" href="{{ route('contact-us.index') }}">
+								<i class="link-icon fa fa-comment"></i>
+								<span class="menu-title">Pesan</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('contact-us.index') }}">
-								<i class="link-icon fa fa-comment"></i>
-								<span class="menu-title">Pesan <sup class="notif-message">{{ count(count_messages()) }}</sup></span>
+							<a class="nav-link" href="{{ route('laporan.index') }}">
+								<i class="link-icon icon-docs"></i>
+								<span class="menu-title">Laporan</span>
 							</a>
 						</li>
 						<li class="nav-item">
@@ -393,7 +395,7 @@
         <script src="{{ asset('assets/js/plugin/select2/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/atlantis2.min.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
+        <script src="{{ asset('assets/js/demo.js') }}"></script>
 		@stack('scripts')
 
 		<script>

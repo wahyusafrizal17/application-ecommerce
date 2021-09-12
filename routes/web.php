@@ -40,9 +40,10 @@ Route::prefix('administrator')->group(function () {
     Route::get('syarat-dan-ketentuan', 'Admin\DashboardController@syaratDanKetentuan')->name('tem.index');
     Route::put('syarat-dan-ketentuan', 'Admin\DashboardController@syaratDanKetentuanUpdate')->name('tem.update');
 
-    Route::get('message', 'ContactUsController@index')->name('contact-us.index');
-    Route::get('message/{id}/show', 'ContactUsController@show')->name('contact-us.show');
-    Route::post('message/{id}/replay', 'ContactUsController@replay')->name('contact-us.replay');
+    Route::get('contact-us', 'ContactUsController@index')->name('contact-us.index');
+    Route::get('contact-us/{id}/show', 'ContactUsController@show')->name('contact-us.show');
+    Route::post('contact-us/{id}/replay', 'ContactUsController@replay')->name('contact-us.replay');
+    Route::post('contact-us/delete', 'ContactUsController@delete')->name('contact-us.delete');
 
     Route::post('send-id-product', 'Admin\ProductController@sendId')->name('send-id-product');
     Route::post('save-product', 'Admin\ProductController@saveProduct')->name('save-product');
@@ -80,7 +81,8 @@ Route::get('/payment','Frontend\TransactionController@index');
 Route::get('cancel-transaction','Frontend\TransactionController@Cancel')->name('cancel-transaction');
 Route::post('upload-bukti-transfer', 'Frontend\TransactionController@UploadBuktiTransfer')->name('upload-bukti-transfer.upload');
 
-
+// ---------------- Profile ------------------------------
+Route::get('profile', 'WelcomeController@profile')->name('profile.index');
 
 });
 
@@ -111,4 +113,5 @@ Route::prefix('pages')->group(function () {
 
     Route::get('hubungi-kami' ,'ContactUsController@hubungiKami')->name('hubungi-kami');
     Route::post('contact-us', 'ContactUsController@contactUs')->name('contact-us');
+    Route::get('mail-successfull', 'ContactUsController@mailSuccessfull')->name('mail-success');
 });

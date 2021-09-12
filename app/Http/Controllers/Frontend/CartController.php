@@ -32,23 +32,28 @@ class CartController extends Controller
         $data['setting']        = Setting::find(1);
         $data['all']            = Product::paginate(3);
         $data['card']           = Card::pluck('name_card','number_card');
-        $data['cart']           = Cart::where('user_id',$auth)->where('is_active', 1)->get();
+        $data['cart']           = \DB::SELECT("select c.id, c.user_id, p.image, p.name_product, c.qty, p.sell_price
+        from carts as c
+        join products as p ON c.product_id = p.id
+        where user_id = $auth and is_active = 1");
         $data['checkout']       = Checkout::where('user_id',$auth)->where('is_active', 1)->first();
-        // $data['provinces']      = \DB::table('raja_ongkir_provinces')->get();
         $data['provinces']      = \DB::table('tb_ro_provinces')->pluck('province_name','province_id');
+
         return view('frontend.cart.index',$data);
     }
 
     public function insertCart(Request $request)
     {
-        $stok = hitung_stok_product($request->product_id);
-        if($request->qty > $stok[0]->qty){
+        $stok = hitung_stok_product($request->product_id)[0]->qty - hitung_stok_product_keluar($request->product_id)[0]->qty;
+
+        if($request->qty > $stok){
             alert()->warning('Stok produk tidak cukup' , 'Opsss');
             return redirect()->back();
         }else{
             $input = $request->all();
             $input['user_id'] = Auth::user()->id;
             $input['is_active'] = 1;
+            $input['qty'] = $request->quant[1];
 
             $data = Cart::where('user_id', Auth::user()->id)->where('product_id', $request->product_id)->where('is_active', 1)->first();
 

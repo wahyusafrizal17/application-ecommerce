@@ -29,7 +29,7 @@ class MessageEmail extends Mailable
     public function build()
     {
         return $this->from($this->data['email_app'], $this->data['name_app'])
-                   ->view('admin.message.email')
+                   ->view('admin.contact-us.email')
                    ->subject($this->data['name_app'])
                    ->with(
                     [

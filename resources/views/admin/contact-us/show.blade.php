@@ -41,6 +41,7 @@
                         <div class="row mt-5">
                             <div class="col-md-12 text-right">
                                 <button type="submit" class="btn btn-success btn-sm">Balas</button>
+                                <a href="{{ route('contact-us.index') }}" class="btn btn-primary btn-sm"> Kembali</a>
                             </div>
                         </div>
                    </div>

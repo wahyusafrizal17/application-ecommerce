@@ -32,7 +32,7 @@
         <span class="label-form-kontak">Form kontak</span>
       </div>
 
-      <div class="container" style="padding: 0px 50px;">
+      <div class="container padding-contact-us">
         {{ Form::open(['url' => route('contact-us'), 'method' => 'POST']) }}
         <div class="col-md-12 mt-3">
           <div class="form-group row">

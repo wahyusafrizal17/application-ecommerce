@@ -21,19 +21,20 @@ class TransactionController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
         $auth = Auth::User()->id;
 
         $data['setting']        = Setting::find(1);
         $data['cart']           = Cart::where('user_id',$auth)->where('is_active', 1)->get();
-        $data['checkout']       = Checkout::where('user_id',$auth)->where('is_active', 1)->first();
 
-        if(empty($data['checkout']))
+        $data['transaction']    = Transaction::where('nota', $request->nota)->first();
+        if(empty($data['transaction']))
         {
-            return redirect('lacak-order');
+            return view('frontend.404');
         }
-        $data['transaction']    = Transaction::where('checkout_id', $data['checkout']->id)->first();
+
+        $data['checkout']       = Checkout::where('user_id',$auth)->where('id', $data['transaction']->checkout_id)->first();
 
         $data['address'] = \DB::select('SELECT p.province_name, c.city_name, s.subdistrict_name
         FROM tb_ro_provinces as p
@@ -67,17 +68,6 @@ class TransactionController extends Controller
         
 
         if($transfer->save()){
-            $data  = Cart::where('user_id',Auth::User()->id)->where('is_active', 1)->get();
-            foreach($data as $row){
-                $c = Cart::where('id', $row->id)->first();
-                $c->is_active = 0;
-                $c->save();
-            }
-
-            $model = Checkout::where('id', $request->checkout_id)->first();
-            $model->is_active = 0;
-            $model->save();
-
             Mail::to($setting->email)->send(new OrderEmail(['tanggal' => $transfer->created_at, 'name_app' => $setting->name, 'email_app' => $setting->email, 'checkout' => $request->checkout_id]));
         }
 

@@ -64,12 +64,13 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <div class="card-title">Grafik Penjualan</div>
+              <div class="card-title">Grafik keuntungan penjualan</div>
             </div>
             <div class="card-body">
-              <div class="chart-container">
-                <canvas id="multipleBarChart"></canvas>
+              <div class="chart-container" style="min-height: 375px">
+                <canvas id="statisticsChart"></canvas>
               </div>
+              <div id="myChartLegend"></div>
             </div>
           </div>
         </div>

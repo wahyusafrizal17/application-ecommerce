@@ -24,7 +24,7 @@
       <div class="col-lg-8 col-12">
         <div class="checkout-form">
           <table class="table table-bordered">
-            <tr>
+            <tr style="background-color: #F7941D;color: white">
               <th>Produk</th>
               <th>Nama produk</th>
               <th>Jumlah</th>

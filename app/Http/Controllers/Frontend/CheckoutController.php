@@ -87,6 +87,17 @@ class CheckoutController extends Controller
         $transaction->status  = "MENUNGGU PEMBAYARAN";
         $transaction->save();
 
-        return redirect('/payment');
+        $data  = Cart::where('user_id',Auth::User()->id)->where('is_active', 1)->get();
+            foreach($data as $row){
+                $c = Cart::where('id', $row->id)->first();
+                $c->is_active = 0;
+                $c->save();
+            }
+
+            $model = Checkout::where('id', $request->checkout_id)->first();
+            $model->is_active = 0;
+            $model->save();
+
+        return redirect('/payment?nota='.$transaction->nota.'');
     }
 }

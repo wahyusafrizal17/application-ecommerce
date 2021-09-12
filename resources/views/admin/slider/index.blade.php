@@ -107,7 +107,6 @@ span{
 <script>
    $(".sliderAction").click(function() {
       var id = $(this).data('id');
-      console.log(id);
       swal({
          title: 'Apakah kamu yakin ?',
          text: "Data akan dihapus secara permanen!",

@@ -12,41 +12,26 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Title Tag  -->
-    <title>WAHYU store | Aplikasi Belanja Online</title>
+    <title>{{ $pengaturan->name }}</title>
 	<!-- Favicon -->
 	<!-- Web Font -->
-	<link href="/css/swap.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('css/swap.css') }}">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
-	<!-- StyleSheet -->
-	
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="/css/bootstrap.css">
-	<!-- Magnific Popup -->
-    <link rel="stylesheet" href="/css/magnific-popup.min.css">
-	<!-- Font Awesome -->
-    <link rel="stylesheet" href="/css/font-awesome.css">
-	<!-- Fancybox -->
-	<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
-	<!-- Themify Icons -->
-    <link rel="stylesheet" href="/css/themify-icons.css">
-	<!-- Jquery Ui -->
-    <link rel="stylesheet" href="/css/jquery-ui.css">
-	<!-- Nice Select CSS -->
-    <link rel="stylesheet" href="/css/niceselect.css">
-	<!-- Animate CSS -->
-    <link rel="stylesheet" href="/css/animate.css">
-	<!-- Flex Slider CSS -->
-    <link rel="stylesheet" href="/css/flex-slider.min.css">
-	<!-- Owl Carousel -->
-    <link rel="stylesheet" href="/css/owl-carousel.css">
-	<!-- Slicknav -->
-    <link rel="stylesheet" href="/css/slicknav.min.css">
-	
-	<!-- Eshop StyleSheet -->
-	<link rel="stylesheet" href="/css/reset.css">
-	<link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/responsive.css">
+    	
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}"> --}}
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/niceselect.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/flex-slider.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 	
 </head>
 <body class="js">
@@ -69,46 +54,7 @@
 	  <!-- Header -->
 	  <header class="header shop">
 		<!-- Topbar -->
-		<div class="topbar">
-		  <div class="container">
-			<div class="row">
-			  <div class="col-lg-4 col-md-12 col-12">
-				<!-- Top Left -->
-				<div class="top-left">
-				  <ul class="list-main">
-				  <li><i class="fa fa-phone"></i>  {{ $pengaturan->phone }}</li>
-				  <li><i class="fa fa-envelope"></i> {{ $pengaturan->email }}</li>
-				  </ul>
-				</div>
-				<!--/ End Top Left -->
-			  </div>
-			  <div class="col-lg-8 col-md-12 col-12">
-				<!-- Top Right -->
-				<div class="right-content">
-				  <ul class="list-main">
-					{{-- <li><i class="fa fa-map-pin"></i> {{ $pengaturan->address }}</li> --}}
-					{{-- <li><i class="fa fa-history"></i> <a href="#">09:00 - 17:00</a></li> --}}
-					<li>
-						@if(Auth::check())
-						<i class="fa fa-user-circle"></i><a href="/my-profile">{{ Auth::User()->name }}</a>
-						<li><i class="fa fa-sign-out"></i>
-						 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Log Out</a>
-						</li>
-						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-						@else
-						<i class="fa fa-sign-in"></i><a href="/login">Login</a>
-						@endif
-					</li>
-				  </ul>
-				</div>
-				<!-- End Top Right -->
-			  </div>
-			</div>
-		  </div>
-		</div>
+		
 			<!-- End Topbar -->
 			<div class="middle-inner">
 				<div class="container">
@@ -116,7 +62,7 @@
 						<div class="col-lg-2 col-md-2 col-12">
 							<!-- Logo -->
 							<div class="logo">
-								<a href="/"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" style="width: 100%" alt=""></a>
+								<a href="/"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" class="img-logo" alt=""></a>
 							</div>
 							<!--/ End Logo -->
 							<!-- Search Form -->
@@ -184,6 +130,15 @@
 													<li><a href="{{ route('cek-ongkir') }}">Cek Ongkir</a></li>
 													<li><a href="{{ route('syarat-dan-ketentuan') }}">Ketentuan</a></li>
 													<li><a href="{{ route('hubungi-kami') }}">Hubungi Kami</a></li>
+													@if(Auth::check())
+													<li><a href="{{ route('profile.index') }}">{{ Auth::user()->name }}</a></li>
+													<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+													<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+														@csrf
+													</form>
+													@else
+													<li><a href="/login">Login</a></li>
+													@endif
 												</ul>
 											</div>
 										</div>
@@ -316,9 +271,9 @@
                 </div>
                 <!-- End Single Widget -->
                 <ul>
-                  <li><a href="https://www.facebook.com/wahyusadgdfrizal.geforce"><i class="fa fa-facebook"></i></a></li>
+                  <li><a href="{{ $pengaturan->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
                   <li><a target="_blank" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order."><i class="fa fa-whatsapp"></i></a></li>
-                  <li><a href="https://www.instagram.com/wahyuu.sz/"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="{{ $pengaturan->link_instagram }}"><i class="fa fa-instagram"></i></a></li>
                 </ul>
               </div>
               <!-- End Single Widget -->
@@ -341,43 +296,24 @@
         </div>
       </div>
     </footer>
-    <!-- /End Footer Area -->
-     <!-- Jquery -->
-	 <script src="/js/jquery.min.js"></script>
-	 <script src="/js/jquery-migrate-3.0.0.js"></script>
-	 <script src="/js/jquery-ui.min.js"></script>
-	 <!-- Popper JS -->
-	 <script src="/js/popper.min.js"></script>
-	 <!-- Bootstrap JS -->
-	 <script src="/js/bootstrap.min.js"></script>
-	 <!-- Color JS -->
-	 {{-- <script src="/js/colors.js"></script> --}}
-	 <!-- Slicknav JS -->
-	 <script src="/js/slicknav.min.js"></script>
-	 <!-- Owl Carousel JS -->
-	 <script src="/js/owl-carousel.js"></script>
-	 <!-- Magnific Popup JS -->
-	 <script src="/js/magnific-popup.js"></script>
-	 <!-- Fancybox JS -->
-	 <script src="/js/facnybox.min.js"></script>
-	 <!-- Waypoints JS -->
-	 <script src="/js/waypoints.min.js"></script>
-	 <!-- Countdown JS -->
-	 <script src="/js/finalcountdown.min.js"></script>
-	 <!-- Nice Select JS -->
-	 <script src="/js/nicesellect.js"></script>
-	 <!-- Ytplayer JS -->
-	 <script src="/js/ytplayer.min.js"></script>
-	 <!-- Flex Slider JS -->
-	 <script src="/js/flex-slider.js"></script>
-	 <!-- ScrollUp JS -->
-	 <script src="/js/scrollup.js"></script>
-	 <!-- Onepage Nav JS -->
-	 <script src="/js/onepage-nav.min.js"></script>
-	 <!-- Easing JS -->
-	 <script src="/js/easing.js"></script>
-	 <!-- Active JS -->
-	 <script src="/js/active.js"></script>
+	<script src="{{ asset('js/jquery.min.js') }}"></script>
+	<script src="{{ asset('js/jquery-migrate-3.0.0.js') }}"></script>
+	<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('js/popper.min.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/slicknav.min.js') }}"></script>
+	<script src="{{ asset('js/owl-carousel.js') }}"></script>
+	<script src="{{ asset('js/magnific-popup.js') }}"></script>
+	<script src="{{ asset('js/facnybox.min.js') }}"></script>
+	<script src="{{ asset('js/waypoints.min.js') }}"></script>
+	<script src="{{ asset('js/finalcountdown.min.js') }}"></script>
+	<script src="{{ asset('js/nicesellect.js') }}"></script>
+	<script src="{{ asset('js/ytplayer.min.js') }}"></script>
+	<script src="{{ asset('js/flex-slider.js') }}"></script>
+	<script src="{{ asset('js/scrollup.js') }}"></script>
+	<script src="{{ asset('js/onepage-nav.min.js') }}"></script>
+	<script src="{{ asset('js/easing.js') }}"></script>
+	<script src="{{ asset('js/active.js') }}"></script>
 	 <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 	 <script src="{{ asset('assets/js/plugin/select2/select2.full.min.js') }}"></script>
 	@stack('scripts')

@@ -98,7 +98,7 @@
           @foreach($all as $row)
           @if(hitung_stok_product($row->id)[0]->qty - hitung_stok_product_keluar($row->id)[0]->qty > 0)
           @if(!empty(hitung_stok_product($row->id)[0]->qty)) 
-          <div class="col-lg-4 col-md-6 col-12" align="center">
+          <div class="col-md-4 col-6" align="center">
             <div class="single-product">
               <div class="product-img" style="border-radius: 10px 10px 0px 0px;">
                 <a href="products/{{ $row->slug }}">

@@ -33,9 +33,9 @@
     <div class="row">
       <div class="col-lg-9 col-12">
         <div class="checkout-form">
-          
+          <div>
             <table class="table table-bordered">
-              <tr align="center">
+              <tr align="center" style="background-color: #F7941D;color: white">
                 <th>Product</th>
                 <th>Name</th>
                 <th>Qty</th>
@@ -50,10 +50,10 @@
               @foreach($cart as $row)
               {{ Form::hidden('user_id', $row->user_id) }}
               <tr align="center">
-                <td><img src="{{ asset('assets/img/product/'.$row->product->image)}}" alt="#" width="50"></td>
-                <td>{{ $row->product->name_product }}</td>
+                <td><img src="{{ asset('assets/img/product/'.$row->image)}}" alt="#" width="50"></td>
+                <td>{{ $row->name_product }}</td>
                 <td>{{ $row->qty }}</td>
-                <td>@currency($row->product->sell_price)</td>
+                <td>@currency($row->sell_price)</td>
                 @if(!$checkout)
                 <td>
                   <a href="/cart/{{ $row->id }}/delete">
@@ -62,24 +62,24 @@
                 </td>
                 @endif
               </tr>
-              <?php $total += $row->qty*$row->product->sell_price; ?>
+              <?php $total += $row->qty*$row->sell_price; ?>
               @endforeach
               <tr>
                 <td colspan="3">Total</td>
                 <td class="text-center">@currency($total)</td>
               </tr>
-              <tr>
+              @if(!empty($cart))
+              <tr align="right" class="button-checkout">
                 <td colspan="5">
-                  @if($checkout)
-                  <a href="/checkout" class="btn"  style="color: white; width: 100%; text-align: center"> SELESAIKAN TRANSAKSI </a>
-                  @else
-                  <a href="/products" class="btn" style="width: 100%; color: white; text-align: center">TAMBAH KERANJANG</a>
-                  @endif
+                  <button type="button" class="btn address-show" style="color: white; text-align: center">LANJUT CHECKOUT </button>
                 </td>
               </tr>
+              @endif
             </table>
+          </div>
+
             @if(!$checkout)
-          <div class="order-details">
+          <div class="order-details hide-address">
             <div class="single-widget">
                 {{ Form::open(['url'=>route('checkout.save'),'class'=>'form-horizontal'])}}
                 {{ Form::hidden('user_id', Auth::user()->id) }}
@@ -138,7 +138,7 @@
                     </div>
 
                     <div class="form-group">
-                      <button type="submit" class="btn" id="buttonSubmit">Proses</button>
+                      <button type="submit" class="btn" id="buttonSubmit">CHECKOUT</button>
                     </div>
                     
                   </div>
@@ -194,6 +194,15 @@
 
 @push('scripts')
 <script>
+
+$(".hide-address").hide();
+
+$(".address-show").click(function() {
+  $(".hide-address").show();
+  $(".button-checkout").hide();
+
+});
+
         $(document).ready(function () {
             loadKabupaten();
         });

@@ -24,11 +24,12 @@
     <div class="row">
       <div class="col-12">
         <!-- Shopping Summery -->
+        <div class="table-responsive">
         <table class="table shopping-summery">
           <thead>
             <tr class="main-hading">
+              <th>ID Transaksi</th>
               <th>Produk</th>
-              <th>NAMA PENERIMA</th>
               <th>TOTAL HARGA</th> 
               <th>STATUS</th> 
               <th>#</th> 
@@ -38,6 +39,7 @@
             @if($transactions)
             @foreach($transactions as $transaction)
             <tr align="center">
+              <td>{{ $transaction->nota }}</td>
               <td class="image" data-title="No">
                 <?php
                   $products = product_list($transaction->cart_id);
@@ -46,7 +48,6 @@
                   # {{ $product->name_product }} ({{$product->qty}})<br>
                 @endforeach
               </td>
-              <td class="product-des" data-title="Description"><span>{{ $transaction->name }}</span></td>
               <td class="total-amount" data-title="Total"><span>@currency($transaction->total)</span></td>
               <td class="total-amount" data-title="Total"><span>{{ $transaction->status }}</span></td>
               @if($transaction->status == "DITERIMA" || $transaction->status == "DITOLAK")
@@ -73,6 +74,7 @@
             @endif
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   </div>

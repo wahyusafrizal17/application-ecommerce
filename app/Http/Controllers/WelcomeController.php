@@ -155,8 +155,10 @@ class WelcomeController extends Controller
             $detail->image = $fileName;
         }
 
-        $detail->phone = $request->phone;
-        $detail->address = $request->address;
+        if(!empty($request->phone) || !empty($request->address)){
+            $detail->phone = $request->phone;
+            $detail->address = $request->address;
+        }
         $detail->save();
         $user->update($input);
 

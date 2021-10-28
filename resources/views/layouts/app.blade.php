@@ -140,6 +140,7 @@
 													<li><a href="/products">Produk</a></li>
 													@if(Auth::check())
 													<li><a href="/lacak-order">Pesanan Saya</a></li>
+													<li><a href="/cart">Keranjang</a></li>
 													@endif
 													<li><a href="{{ route('cek-ongkir') }}">Cek Ongkir</a></li>
 													<li><a href="{{ route('syarat-dan-ketentuan') }}">Ketentuan</a></li>
@@ -173,7 +174,7 @@
 	<section class="shop-services section home">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6 col-12">
+				<div class="col-lg-4 col-md-4 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="fa fa-plane"></i>
@@ -182,7 +183,7 @@
 					</div>
 					<!-- End Single Service -->
 				</div>
-				<div class="col-lg-3 col-md-6 col-12">
+				<div class="col-lg-4 col-md-4 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="fa fa-archive"></i>
@@ -191,7 +192,7 @@
 					</div>
 					<!-- End Single Service -->
 				</div>
-				<div class="col-lg-3 col-md-6 col-12">
+				<div class="col-lg-4 col-md-4 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="fa fa-lock"></i>
@@ -200,7 +201,7 @@
 					</div>
 					<!-- End Single Service -->
 				</div>
-				<div class="col-lg-3 col-md-6 col-12">
+				{{-- <div class="col-lg-3 col-md-6 col-12">
 					<!-- Start Single Service -->
 					<div class="single-service">
 						<i class="fa fa-eye"></i>
@@ -208,7 +209,7 @@
 						<p>100 Pengunjung</p>
 					</div>
 					<!-- End Single Service -->
-				</div>
+				</div> --}}
 			</div>
 		</div>
 	</section>

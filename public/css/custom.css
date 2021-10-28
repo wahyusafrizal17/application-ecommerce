@@ -60,6 +60,7 @@
 .myBox {
     width: 100%;
     overflow: auto;
+    scrollbar-width: none;
 }
 .list-order{
     width: 980px;
@@ -73,10 +74,29 @@
     padding-right: 15px;
     font-size: 10px;
 }
-
+.quickview-content .quantity .input-group{
+    width: 100%;
+}
+.quickview-content .add-to-cart{
+    width: 100%;
+}
+.quickview-content .add-to-cart .btn{
+    width: 96%;
+}
+.shop.checkout .single-widget.get-button .btn{
+    margin-top: 10px;
+}
 }
 
 @media(min-width:424px) {
+    .header.shop .search-top {
+        right: 75px;
+        top: 38px;
+        color: #F7941D;
+    }
+    .quickview-content .add-to-cart .btn {
+        width: 97.2%;
+    }
 }
 
 @media(min-width:768px) {
@@ -141,5 +161,17 @@
     float: right;
     padding-right: 15px;
     font-size: 12px;
+}
+.quickview-content .quantity .input-group{
+    width: 151px
+}
+.quickview-content .add-to-cart{
+    width: 60%;
+}
+.quickview-content .add-to-cart .btn{
+    width: 100%;
+}
+.shop.checkout .single-widget.get-button .btn{
+    margin-top: 0;
 }
 }

@@ -25,7 +25,8 @@
         <div class="checkout-form">
           <div class="order-details">
             <!-- Order Widget -->
-            <div class="single-widget">
+            <div class="myBox">
+            <div class="single-widget list-ongkir">
               <h2>INFORMASI PEMBAYARAN</h2>
               <div class="content">
                 <ul>
@@ -35,9 +36,11 @@
                 </ul>
               </div>
             </div>
+            </div>
             <!--/ End Order Widget -->
             <!-- Order Widget -->
-            <div class="single-widget">
+            <div class="myBox">
+            <div class="single-widget list-ongkir">
               <h2>ALAMAT PENERIMA</h2>
               <div class="content">
                 <ul>
@@ -51,6 +54,7 @@
                 <hr>
               </div>
             </div>
+          </div>
             @if(!empty($transaction->bukti_transfer))
             <div class="single-widget">
               <div class="content">
@@ -94,7 +98,8 @@
         <form action="/proses-transaction" method="get">
           <div class="order-details">
             <!-- Order Widget -->
-            <div class="single-widget">
+            <div class="myBox">
+            <div class="single-widget list-ongkir">
               <h2>CARA KONFIRMASI</h2>
               <div class="content">
                 <ul>
@@ -105,6 +110,7 @@
                   <li>5. konfirmasi kami akan di kirim lewat Email anda.</li>
                 </ul>
               </div>
+            </div>
             </div>
             <!--/ End Order Widget -->
             <div class="single-widget get-button">

@@ -23,7 +23,8 @@
     <div class="row">
       <div class="col-lg-8 col-12">
         <div class="checkout-form">
-          <table class="table table-bordered">
+          <div class="myBox">
+          <table class="table table-bordered list-ongkir">
             <tr style="background-color: #F7941D;color: white">
               <th>Produk</th>
               <th>Nama produk</th>
@@ -45,6 +46,7 @@
             @endforeach
 
           </table>
+          </div>
           <div class="order-details">
             <div class="single-widget">
               <div class="container">

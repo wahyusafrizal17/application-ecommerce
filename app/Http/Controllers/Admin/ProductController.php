@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\StoreRequest;
+use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Stock;
-use illuminate\Support\Str;
-
 
 class ProductController extends Controller
 {
@@ -40,11 +40,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $input = $request->all();
-        $input['slug'] = Str::slug($request->name_product);
-
         if($request->hasFile('image')){
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();    
@@ -92,13 +90,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $product = Product::find($id);
         
         $input = $request->all();
-        $input['slug'] = Str::slug($request->name_product);
-
         if($request->hasFile('image')){
             $file = $request->file('image');
             $fileName = $file->getClientOriginalName();    
@@ -120,13 +116,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        $product = Product::find($id);
+        $product = Product::find($request->id);
         $product->delete();
 
-        alert()->success('Data berhasil diubah' , 'Success');
-        return redirect('administrator/product');
+        return 'success';
     }
 
     public function sendId(Request $request)

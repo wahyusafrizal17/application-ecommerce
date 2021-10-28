@@ -29,7 +29,7 @@
   <div class="container">
 
     <div class="row">
-      <div class="col-md-12"  style="font-size: 2.25em; text-align: center; text-transform: uppercase;letter-spacing: 0.1em; color: #69727b; ">
+      <div class="col-md-12 text-judul">
         Cek Ongkir
       </div>
     </div>
@@ -130,7 +130,8 @@
         <span class="label-form-kontak" style="font-size: 15px !important">Hasil Pengecekan</span>
 
         <div class="container mt-2">
-          <table class="table">
+          <div class="myBox">
+          <table class="table list-ongkir">
             <thead>
               <tr>
                 <th scope="col">Kurir</th>
@@ -162,6 +163,7 @@
               @endforeach
             </tbody>
           </table>
+          </div>
         </div>
       </div>
       @endif

@@ -16,10 +16,12 @@ class DashboardController extends Controller
         $data['transaction'] = Transaction::all();
         $data['user'] = User::all();
         $data['product'] = Product::all();
+        
         $data['pemasukan'] = \DB::select('select SUM(p.buy_price * s.qty) as total
         from stocks as s
         join products as p ON s.product_id = p.id
         where s.status = "PEMASUKAN"');
+
         $data['pengeluaran'] = \DB::select('select SUM(p.sell_price * s.qty) as total
         from stocks as s
         join products as p ON s.product_id = p.id

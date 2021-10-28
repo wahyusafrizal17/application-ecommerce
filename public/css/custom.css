@@ -5,10 +5,11 @@
 }
 .header.shop .search-top{
     right: 75px;
-    top: 8px;
+    top: 20px;
+    color: #F7941D;
 }
 .slicknav_menu .slicknav_no-text{
-    margin-top: -31px;
+    margin-top: -36px;
     margin-right: 8px;
 }
 .images-slider{
@@ -35,6 +36,43 @@
 .padding-contact-us{
     padding: 0px 15px;
 }
+.text-judul{
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #69727b; 
+}
+.header-box{
+    background: #F7941D;
+    padding: 10px 26px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+.content-box{
+    background: white;
+    padding: 26px 26px;
+    color: black;
+    font-size: 12px;
+    border-bottom: 1px solid gray;
+}
+.myBox {
+    width: 100%;
+    overflow: auto;
+}
+.list-order{
+    width: 980px;
+}
+.list-ongkir{
+    width:700px;
+    max-width: none;
+}
+.text-harga{
+    float: right;
+    padding-right: 15px;
+    font-size: 10px;
+}
 
 }
 
@@ -44,7 +82,8 @@
 @media(min-width:768px) {
 
 .img-logo {
-    width: 100%
+    width: 100%;
+    margin-top: -17px;
 }
 .images-slider{
     height: auto;
@@ -69,5 +108,38 @@
     color: white !important;
     border-radius: 0px 0px 10px 10px;
     padding-top: 0px;
+}
+.text-judul{
+    font-size: 2.25em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #69727b; 
+}
+.header-box{
+    background: #F7941D;
+    padding: 10px 26px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+.content-box{
+    background: white;
+    padding: 35px 26px;
+    color: black;
+    font-size: 14px;
+    border-bottom: 1px solid gray;
+}
+.list-order{
+    width: 100%;
+}
+.list-ongkir{
+    width:100%;
+    max-width: none;
+}
+.text-harga{
+    float: right;
+    padding-right: 15px;
+    font-size: 12px;
 }
 }

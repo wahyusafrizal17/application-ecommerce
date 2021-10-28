@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Card\StoreRequest;
+use App\Http\Requests\Card\UpdateRequest;
 use App\Models\Card;
 
 class CardController extends Controller
@@ -35,7 +37,7 @@ class CardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         Card::create($request->all());
 
@@ -73,7 +75,7 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $card = Card::find($id);
         $card->update($request->all());
@@ -88,12 +90,12 @@ class CardController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function delete(Request $request)
     {
-        $card = Card::find($id);
+        $card = Card::find($request->id);
         $card->delete();
 
-        alert()->success('Data berhasil dihapus' , 'Success');
-        return redirect('administrator/card');
+        return 'success';
     }
 }

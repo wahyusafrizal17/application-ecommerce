@@ -58,7 +58,7 @@
                   <img src="{{ asset('assets/img/product/'.$row->image)}}" alt="#">
                 </div>
                 <div class="content">
-                  <h5><a href="/products/{{ $row->slug }}">{{ $row->name_product }}</a></h5>
+                  <h5><a href="/products/{{ $row->slug }}">BELI SEKARANG</a></h5>
                   <p class="price">@currency($row->sell_price)</p>
                   <span style="font-size: 10px;">Terjual : {{ (!empty(hitung_stok_product_keluar($row->id)[0]->qty)) ? hitung_stok_product_keluar($row->id)[0]->qty : 0 }}</span>
                   {{-- <ul class="reviews">
@@ -109,7 +109,7 @@
                   <div class="product-action-2" style="padding-left: 15px">
                     <a title="Add to cart" href="products/{{ $row->slug }}">Lihat</a>
                   </div>
-                  <div style="float: right;padding-right: 15px;">
+                  <div class="text-harga">
                     <span>@currency($row->sell_price)</span>
                     
                   </div>
@@ -117,7 +117,7 @@
               </div>
               
               <div class="product-content">
-                <h3><a href="products/{{ $row->slug }}" class="text-white">{{ $row->name_product }}</a></h3>
+                <h3><a href="products/{{ $row->slug }}" class="text-white">BELI SEKARANG</a></h3>
                 {{-- <div class="product-price">
                   <span>@currency($row->price)</span>
                 </div> --}}

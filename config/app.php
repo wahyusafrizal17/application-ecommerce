@@ -166,6 +166,7 @@ return [
         Codedge\Fpdf\FpdfServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -235,6 +236,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

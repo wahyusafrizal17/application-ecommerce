@@ -21,7 +21,7 @@
 <section class="shop checkout section">
   <div class="container">
     <div class="row">
-      <div class="col-md-12"  style="font-size: 2.25em; text-align: center; text-transform: uppercase;letter-spacing: 0.1em; color: #69727b; ">
+      <div class="col-md-12 text-judul">
         Syarat dan Ketentuan
       </div>
       

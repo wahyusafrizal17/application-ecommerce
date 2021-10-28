@@ -17,8 +17,8 @@ class ProductController extends Controller
     {
 
         $data['setting']        = Setting::find(1);
-        $data['all']            = Product::paginate(4);
-        $data['new_products']   = Product::orderBy('id', 'asc')->paginate(6);
+        $data['all']            = Product::orderBy('created_at', 'DESC')->paginate(4);
+        $data['new_products']   = Product::orderBy('created_at', 'DESC')->paginate(6);
         $data['categories']     = Category::all();
         return view('frontend.product.index',$data);
     }
@@ -27,12 +27,23 @@ class ProductController extends Controller
     {
         $data['setting']        = Setting::find(1);
         $data['product']        = Product::where('slug',$slug)->first();
+
+        if(empty($data['product']))
+        {
+            return view('frontend.404');
+        }
+
         return view('frontend.product.detail',$data);
     }
 
     public function category($slug)
     {
         $category = Category::where('slug',$slug)->first();
+
+        if(empty($category))
+        {
+            return view('frontend.404');
+        }
 
         $data['setting']        = Setting::find(1);
         $data['all']            = Product::where('category_id',$category->id)->paginate(6);

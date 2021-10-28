@@ -13,10 +13,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Title Tag  -->
     <title>{{ $pengaturan->name }}</title>
+	<link rel="icon" href="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" type="image/x-icon"/>
+
 	<!-- Favicon -->
 	<!-- Web Font -->
+	<script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+
+	<script>
+		WebFont.load({
+			google: {"families":["Lato:300,400,700,900"]},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/assets/css/fonts.min.css']},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
 	<link rel="stylesheet" href="{{ asset('css/swap.css') }}">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     	
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/magnific-popup.min.css') }}">
@@ -24,9 +36,9 @@
 	{{-- <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}"> --}}
 	<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/niceselect.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/flex-slider.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
+	{{-- <link rel="stylesheet" href="{{ asset('css/animate.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/flex-slider.min.css') }}"> --}}
+	{{-- <link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}"> --}}
 	<link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/reset.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -126,7 +138,9 @@
 												<ul class="nav main-menu menu navbar-nav">
 													<li class="active"><a href="/">Home</a></li>
 													<li><a href="/products">Produk</a></li>
+													@if(Auth::check())
 													<li><a href="/lacak-order">Pesanan Saya</a></li>
+													@endif
 													<li><a href="{{ route('cek-ongkir') }}">Cek Ongkir</a></li>
 													<li><a href="{{ route('syarat-dan-ketentuan') }}">Ketentuan</a></li>
 													<li><a href="{{ route('hubungi-kami') }}">Hubungi Kami</a></li>
@@ -271,9 +285,9 @@
                 </div>
                 <!-- End Single Widget -->
                 <ul>
-                  <li><a href="{{ $pengaturan->link_facebook }}"><i class="fa fa-facebook"></i></a></li>
-                  <li><a target="_blank" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order."><i class="fa fa-whatsapp"></i></a></li>
-                  <li><a href="{{ $pengaturan->link_instagram }}"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="{{ $pengaturan->link_facebook }}"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a target="_blank" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order."><i class="fab fa-whatsapp"></i></a></li>
+                  <li><a href="{{ $pengaturan->link_instagram }}"><i class="fab fa-instagram"></i></a></li>
                 </ul>
               </div>
               <!-- End Single Widget -->
@@ -302,20 +316,19 @@
 	<script src="{{ asset('js/popper.min.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/slicknav.min.js') }}"></script>
-	<script src="{{ asset('js/owl-carousel.js') }}"></script>
+	{{-- <script src="{{ asset('js/owl-carousel.js') }}"></script> --}}
 	<script src="{{ asset('js/magnific-popup.js') }}"></script>
-	<script src="{{ asset('js/facnybox.min.js') }}"></script>
-	<script src="{{ asset('js/waypoints.min.js') }}"></script>
-	<script src="{{ asset('js/finalcountdown.min.js') }}"></script>
+	{{-- <script src="{{ asset('js/facnybox.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/waypoints.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/finalcountdown.min.js') }}"></script> --}}
 	<script src="{{ asset('js/nicesellect.js') }}"></script>
-	<script src="{{ asset('js/ytplayer.min.js') }}"></script>
-	<script src="{{ asset('js/flex-slider.js') }}"></script>
+	{{-- <script src="{{ asset('js/ytplayer.min.js') }}"></script> --}}
+	{{-- <script src="{{ asset('js/flex-slider.js') }}"></script> --}}
 	<script src="{{ asset('js/scrollup.js') }}"></script>
-	<script src="{{ asset('js/onepage-nav.min.js') }}"></script>
+	{{-- <script src="{{ asset('js/onepage-nav.min.js') }}"></script> --}}
 	<script src="{{ asset('js/easing.js') }}"></script>
 	<script src="{{ asset('js/active.js') }}"></script>
 	 <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
-	 <script src="{{ asset('assets/js/plugin/select2/select2.full.min.js') }}"></script>
 	@stack('scripts')
 	@include('sweet::alert')
   </body>

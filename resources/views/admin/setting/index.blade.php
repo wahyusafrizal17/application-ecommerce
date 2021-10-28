@@ -110,7 +110,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card card-profile">
-                        <div class="card-header" style="background-image: url('../assets/img/setting/{{ $pengaturan->logo }}');background-size: contain;">
+                        <div class="card-header" style="background-image: url('../assets/img/setting/{{ $pengaturan->logo }}');background-size: cover;width: 30%;margin-left: 115px;">
                             <div class="profile-picture">
                                 <div class="avatar avatar-xl">
                                     {{-- <img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" alt="..." class="avatar-img rounded-circle"> --}}

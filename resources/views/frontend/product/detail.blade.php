@@ -19,6 +19,7 @@
 
 {{ Form::open(['url'=>route('cart.save'),'class'=>'form-horizontal',])}}
   <input type="hidden" name="product_id" value="{{ $product->id }}">
+  <input type="text" style="position: absolute;left: -350px;" value="{{url('product/'.$product->slug)}}" id="myUrl" readonly>
   <section class="product-area shop-sidebar shop section">
   <div class="container">
     <div class="row">
@@ -84,10 +85,9 @@
                             <div class="default-social">
                                 <h4 class="share-now">Share:</h4>
                                 <ul>
-                                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a class="twitter" href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a class="youtube" href="#"><i class="fa fa-whatsapp"></i></a></li>
-                                    <li><a class="dribbble" href="#"><i class="fa fa-copy"></i></a></li>
+                                    <li><a class="facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url('product/'.$product->slug)}}"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a class="youtube" target="_blank" href="whatsapp://send?text={{url('product/'.$product->slug)}}"><i class="fab fa-whatsapp"></i></a></li>
+                                    <li><button type="button" class="twitter" onclick="myFunction()"><i class="fas fa-copy"></i></button></li>
                                 </ul>
                             </div>
                         </div>
@@ -101,3 +101,17 @@
   </section>
 {{ Form::close() }}
 @endsection
+
+
+@push('scripts')
+<script>
+    function myFunction() {
+    var copyText = document.getElementById("myUrl");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999)
+    document.execCommand("copy");
+    alert("Link Berhasil Dicopy");
+}
+</script>
+
+@endpush

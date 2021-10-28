@@ -76,7 +76,7 @@
 													  </div>
 												</div>
 												<div class="product-content">
-													<h3><a href="products/{{ $row->slug }}" class="text-white">{{ $row->name_product }}</a></h3>
+													<h3><a href="products/{{ $row->slug }}" class="text-white">BELI SEKARANG</a></h3>
 													{{-- <div class="product-price">
 													  <span>@currency($row->price)</span>
 													</div> --}}

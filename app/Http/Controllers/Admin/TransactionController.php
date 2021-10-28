@@ -14,6 +14,7 @@ use App\Mail\TolakPesananEmail;
 use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PDF;
 
 class TransactionController extends Controller
 {
@@ -90,43 +91,45 @@ class TransactionController extends Controller
 
     public function laporanIndex()
     {
-        $data['model'] = \DB::select('select p.id, p.name_product, c.name_category, p.sell_price, p.buy_price
-        from stocks as s
-        join products as p ON s.product_id = p.id
-        join categories as c ON p.category_id = c.id
-        where s.status = "PEMASUKAN" GROUP BY p.id');
+        $data['model'] = \DB::select('select t.id, t.created_at, t.nota, t.total, u.name, c.ongkir, c.subtotal
+        from transactions as t
+        join checkouts as c ON c.id = t.checkout_id
+        join users as u ON u.id = c.user_id GROUP BY t.created_at DESC');
+
         return view('admin.laporan.index', $data);
     }
 
-    public function laporanExport()
+    public function laporanExport(Request $request)
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Nama produk');
-        $sheet->setCellValue('B1', 'Harga beli');
-        $sheet->setCellValue('C1', 'Harga jual');
-        $sheet->setCellValue('D1', 'Pengeluaran');
-        $sheet->setCellValue('E1', 'Pemasukan');
-        $sheet->setCellValue('F1', 'Keuntungan');
-        $data = \DB::select('select p.id, p.name_product, c.name_category, p.sell_price, p.buy_price
-        from stocks as s
-        join products as p ON s.product_id = p.id
-        join categories as c ON p.category_id = c.id
-        where s.status = "PEMASUKAN" GROUP BY p.id');
+        $data['from'] = $request->from;
+        $data['to'] = $request->to;
 
-        $cell = 2;
-        foreach($data as $row){
-            $sheet->setCellValue('A'.$cell, $row->name_product);
-            $sheet->setCellValue('B'.$cell, $row->buy_price);
-            $sheet->setCellValue('C'.$cell, $row->sell_price);
-            $sheet->setCellValue('D'.$cell, total_perhitungan_keuangan_pemasukan($row->id)[0]->total);
-            $sheet->setCellValue('E'.$cell, total_perhitungan_keuangan_pengeluaran($row->id)[0]->total);
-            $sheet->setCellValue('F'.$cell, total_keuntungan_penjualan($row->id)[0]->total);
-            $cell++;
-        }
-        $writer = new Xlsx($spreadsheet);        
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="Jogjatech-export.xlsx"');
-        $writer->save('php://output');
+        $data['laporan'] = \DB::select("select t.created_at, t.nota, t.total, u.name, c.ongkir, c.subtotal
+        from transactions as t
+        join checkouts as c ON c.id = t.checkout_id
+        join users as u ON u.id = c.user_id
+		where t.created_at >= '$data[from]' and t.created_at <= '$data[to]' GROUP BY t.created_at DESC");
+
+        $data['setting'] = Setting::find(1);
+
+        $pdf = PDF::loadView('admin.laporan.export', $data);
+        return $pdf->stream();
+    }
+
+    public function laporanPrint(Request $request, $id)
+    {
+        $data['from'] = $request->from;
+        $data['to'] = $request->to;
+
+        $data['laporan'] = \DB::select("select t.created_at, t.nota, t.total, u.name, c.cart_id, c.ongkir, c.subtotal
+        from transactions as t
+        join checkouts as c ON c.id = t.checkout_id
+        join users as u ON u.id = c.user_id
+		where t.id = '$id'");
+
+        $data['setting'] = Setting::find(1);
+
+        $pdf = PDF::loadView('admin.laporan.print', $data);
+        return $pdf->stream();
     }
 }

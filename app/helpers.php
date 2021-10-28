@@ -99,6 +99,16 @@ function total_keuntungan_penjualan($id)
     return $data;
 }
 
+function total_keuntungan_penjualan_keseluruhan()
+{
+    $data = \DB::SELECT('select SUM((p.sell_price - p.buy_price) * s.qty)  as total
+    from products as p
+    join stocks as s ON p.id = s.product_id
+    where s.status = "PENGELUARAN"');
+
+    return $data;
+}
+
 function cekongkir($apikey,$origin,$destination,$weight,$courier)
 {
     $client = new GuzzleHttp\Client(); //GuzzleHttp\Client
@@ -133,6 +143,40 @@ function cekresi($apikey,$courier,$awb)
         $data = json_decode($request->getBody()->getContents());
 
         return $data;
+}
+
+function hitung_pengeluaran($from_date, $to_date)
+{
+    $data = \DB::select("select SUM(p.buy_price * s.qty) as total
+    from stocks as s
+    join products as p ON s.product_id = p.id
+    where s.status = 'PEMASUKAN' and s.created_at >= '$from_date' and s.created_at <= '$to_date'");
+
+    if(empty($data[0]->total))
+    {
+        $total = 0;
+    }else{
+        $total = $data[0]->total;
+    }
+
+    return $total;
+}
+
+function hitung_pemasukan($from_date, $to_date)
+{
+    $data = \DB::select("select SUM(p.sell_price * s.qty) as total
+    from stocks as s
+    join products as p ON s.product_id = p.id
+    where s.status = 'PENGELUARAN' and s.created_at >= '$from_date' and s.created_at <= '$to_date'");
+
+    if(empty($data[0]->total))
+    {
+        $total = 0;
+    }else{
+        $total = $data[0]->total;
+    }
+
+    return $total;
 }
 
 ?>

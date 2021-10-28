@@ -41,11 +41,9 @@
                                         <a href="{{ route('card.edit',['id'=>$card->id]) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
                                            <i class="fa fa-edit"></i>
                                         </a>
-                                        {{ Form::open(['url'=>route('card.destroy',['id'=>$card->id]),'method'=>'delete'])}}
-                                         <button  data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Delete" type="submit">
-                                           <i class="fa fa-times"></i>
-                                         </button>
-                                        {!! Form::close() !!}
+                                        <button type="button" class="btn btn-link btn-danger delete" data-id="{{ $card->id }}">
+                                          <i class="fa fa-times"></i>
+                                       </button>
                                      </div>
                                    </td>
                                </tr>
@@ -62,3 +60,57 @@
  </div>
  </div>
 @endsection
+
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+
+   $('.delete').click(function(e) {
+      var id = $(this).data('id'); 
+      swal({
+         title: 'Apakah kamu yakin ?',
+         text: "Produk akan terhapus secara permanen !",
+         type: 'warning',
+         buttons:{
+            confirm: {
+               text : 'Ya, saya yakin!',
+               className : 'btn btn-success'
+            },
+            cancel: {
+               visible: true,
+               className: 'btn btn-danger'
+            }
+         }
+      }).then((Delete) => {
+         if (Delete) {
+            $.ajax({
+               url: '{{ route('card.delete') }}',
+               method: 'post',
+               cache: false,
+               data: {
+                  "_token": "{{ csrf_token() }}",
+                  "id" :id
+               },
+               success: function(data){
+                  swal("Good job!", "You clicked the button!", {
+                     icon : "success",
+                     buttons: {        			
+                        confirm: {
+                           className : 'btn btn-success'
+                        }
+                     },
+                  });
+                  location.reload();
+               }
+            });
+         } else {
+            swal.close();
+         }
+      });
+   });
+
+});
+
+</script>
+@endpush

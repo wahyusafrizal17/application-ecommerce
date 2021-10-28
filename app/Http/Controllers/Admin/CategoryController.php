@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateRequest;
 use App\Models\Category;
 use illuminate\Support\Str;
 
@@ -18,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data['categories'] = Category::all();
-        return view('Admin.category.index',$data);
+        return view('admin.category.index',$data);
     }
 
     /**
@@ -28,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('Admin.category.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -37,11 +39,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $input = $request->all();
-        $input['slug'] = Str::slug($request->name_category);
-        Category::create($input);
+        Category::create($request->all());
 
         alert()->success('Data berhasil ditambahkan' , 'Success');
         return redirect('administrator/category');
@@ -67,7 +67,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data['category'] = Category::find($id);
-        return view('Admin.category.edit',$data);
+        return view('admin.category.edit',$data);
     }
 
     /**
@@ -77,13 +77,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         $category = Category::find($id);
-        $input = $request->all();
-        $input['slug'] = Str::slug($request->name_category);
-        
-        $category->update($input);
+        $category->update($request->all());
 
         alert()->success('Data berhasil diubah' , 'Success');
         return redirect('administrator/category');
@@ -95,12 +92,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+    public function delete(Request $request)
     {
-        $category = Category::find($id);
+        $category = Category::find($request->id);
         $category->delete();
 
-        alert()->success('Data berhasil dihapus' , 'Success');
-        return redirect('administrator/category');
+        return 'success';
     }
 }

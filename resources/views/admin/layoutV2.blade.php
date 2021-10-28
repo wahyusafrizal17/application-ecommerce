@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+	$pengaturan = App\Models\Setting::find(1);
+?>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Atlantis Bootstrap 4 Admin Dashboard</title>
+	<title>{{ $pengaturan->name }}</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
+	<link rel="icon" href="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -22,9 +25,6 @@
 	<link rel="stylesheet" href="{{ asset('assets/css/atlantis2.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
 </head>
-<?php
-	$pengaturan = App\Models\Setting::find(1);
-?>
 <body>
 	<div class="wrapper horizontal-layout-2">
 		
@@ -395,7 +395,7 @@
         <script src="{{ asset('assets/js/plugin/select2/select2.full.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/atlantis2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/demo.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
 		@stack('scripts')
 
 		<script>
@@ -404,7 +404,11 @@
 			});
 
 			$('#datepicker').datetimepicker({
-				format: 'MM/DD/YYYY',
+				format: 'YYYY/MM/DD',
+			});
+
+			$('#datepicker2').datetimepicker({
+				format: 'YYYY/MM/DD',
 			});
 
 			$('#basic').select2({

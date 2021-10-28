@@ -28,16 +28,29 @@ class CartController extends Controller
 
     public function index()
     {
-        $auth = Auth::User()->id;
         $data['setting']        = Setting::find(1);
         $data['all']            = Product::paginate(3);
         $data['card']           = Card::pluck('name_card','number_card');
         $data['cart']           = \DB::SELECT("select c.id, c.user_id, p.image, p.name_product, c.qty, p.sell_price
-        from carts as c
-        join products as p ON c.product_id = p.id
-        where user_id = $auth and is_active = 1");
-        $data['checkout']       = Checkout::where('user_id',$auth)->where('is_active', 1)->first();
+                                               from carts as c
+                                               join products as p ON c.product_id = p.id
+                                               where user_id = ".Auth::User()->id." and is_active = 1");
+                                               
+        $data['checkout']       = Checkout::where('user_id', Auth::User()->id)->where('is_active', 1)->first();
         $data['provinces']      = \DB::table('tb_ro_provinces')->pluck('province_name','province_id');
+        $user = User::where('id', Auth::user()->id)->with('detail')->first();
+        if(!empty($data['checkout'])){
+            return redirect('checkout');
+        }
+
+        if($user['detail'])
+        {
+            $data['phone'] = $user['detail']->phone;
+            $data['address'] = $user['detail']->address;
+        }else{
+            $data['phone'] = null;
+            $data['address'] = null;
+        }
 
         return view('frontend.cart.index',$data);
     }
@@ -46,7 +59,7 @@ class CartController extends Controller
     {
         $stok = hitung_stok_product($request->product_id)[0]->qty - hitung_stok_product_keluar($request->product_id)[0]->qty;
 
-        if($request->qty > $stok){
+        if($request->quant[1] > $stok){
             alert()->warning('Stok produk tidak cukup' , 'Opsss');
             return redirect()->back();
         }else{

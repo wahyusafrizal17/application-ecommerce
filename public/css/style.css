@@ -3318,7 +3318,7 @@ Version:1.0
 	bottom:0;
 	height:2px;
 	width:50px;
-	background:#F7941D;
+	/* background:#F7941D; */
 }
 .shop.checkout .single-widget .bg-none h2:before{
 	background: red !important;

@@ -6,15 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<?php $checkout = App\Models\Checkout::where('id', $checkout_id)->first(); ?>
+<?php 
+$checkout = App\Models\Checkout::where('id', $checkout_id)->first();
+$pengaturan = App\Models\Setting::find(1);
+?>
 <body style="font-family: Helvetica,arial,sans-serif;font-size: 20px;">
     <div>
       <div style="text-align:center;background: #F7941D;padding: 18px;text-transform: uppercase">
         PESANAN BARU DARI {{ $checkout->user->name }}
       </div>
       <div style="font-size: 15px;border: 2px solid black;padding: 25px;border-style: dashed;">
-        <p>Hai {{ $checkout->user->name }},</p>
-        <p>Pesananan baru dari wahyu safrizal dipesan pada {{ $tanggal }}.</p>
+        <p>Hai {{ $pengaturan->name }},</p>
+        <p>Pesananan baru dari {{ $checkout->user->name }} dipesan pada {{ $tanggal }}.</p>
         
         <div style="padding-top: 20px;">
           <p style="font-weight: bold;">RINCIAN PESANAN :</p>

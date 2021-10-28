@@ -7,11 +7,14 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Cart;
+use App\Models\DetailUser;
+use App\User;
 use App\Models\TermsAndConditions;
 use Auth;
 use GuzzleHttp\Client;
 use Response;
 use Storage;
+use Illuminate\Support\Facades\Hash;
 
 class WelcomeController extends Controller
 {
@@ -105,6 +108,59 @@ class WelcomeController extends Controller
 
     public function profile()
     {
-        return view('frontend.pages.profile');
+        $data['user'] = User::where('id', Auth::user()->id)->with('detail')->first();
+
+        if($data['user']['detail'])
+        {
+            $data['address'] = $data['user']['detail']->address;
+            $data['phone'] = $data['user']['detail']->phone;
+
+            if(!empty($data['user']['detail']->image)){
+                $data['image']  = 'assets/img/profile/'.$data['user']['detail']->image.'';
+            }else{
+                $data['image'] = 'https://cdn.kibrispdr.org/data/user-profile-png-1.jpg';
+            }
+        }else{
+            $data['phone'] = null;
+            $data['address'] = null;
+            $data['image'] = 'https://cdn.kibrispdr.org/data/user-profile-png-1.jpg';
+        }
+
+        return view('frontend.pages.profile', $data);
+    }
+
+    public function profileUpdate(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        $detail = DetailUser::where('user_id', $id)->first();
+
+        $input = $request->all();
+
+        if(!empty($request->password)){
+            $input['password'] = Hash::make($request->password);
+        }else{
+            $input['password'] = $user->password;
+        }
+
+        if(empty($detail)){
+            $detail = new DetailUser();
+            $detail->user_id = $id;
+        }
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $fileName = $file->getClientOriginalName();    
+            $destinationPath = 'assets/img/profile';
+            $file->move($destinationPath,$file->getClientOriginalName());
+
+            $detail->image = $fileName;
+        }
+
+        $detail->phone = $request->phone;
+        $detail->address = $request->address;
+        $detail->save();
+        $user->update($input);
+
+        alert()->success('Profile berhasil diubah' , 'Success');
+        return redirect()->back();
     }
 }

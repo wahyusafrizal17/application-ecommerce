@@ -21,59 +21,72 @@
 <!-- Shopping Cart -->
 <div class="shopping-cart section">
   <div class="container">
-    <div class="row">
+    <div class="row text-center">
       <div class="col-12">
         <!-- Shopping Summery -->
-        <div class="table-responsive">
-        <table class="table shopping-summery">
-          <thead>
-            <tr class="main-hading">
-              <th>ID Transaksi</th>
-              <th>Produk</th>
-              <th>TOTAL HARGA</th> 
-              <th>STATUS</th> 
-              <th>#</th> 
-            </tr>
-          </thead>
-          <tbody>
-            @if($transactions)
-            @foreach($transactions as $transaction)
-            <tr align="center">
-              <td>{{ $transaction->nota }}</td>
-              <td class="image" data-title="No">
-                <?php
+        <div class="myBox">
+            <div class="row list-order">
+              <div class="col-md-12 header-box">
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    No Faktur
+                  </div>
+                  <div class="col-md-3 col-3">
+                    Produk
+                  </div>
+                  <div class="col-md-2 col-2">
+                    Total Harga
+                  </div>
+                  <div class="col-md-2 col-2">
+                    Status
+                  </div>
+                  <div class="col-md-3 col-3">
+                    #
+                  </div>
+                </div>
+              </div>
+              @if($transactions)
+             @foreach($transactions as $transaction)
+              <div class="col-md-12 content-box">
+                <div class="row">
+                  <div class="col-md-2 col-2">
+                    {{ $transaction->nota }}
+                  </div>
+                  <div class="col-md-3 col-3">
+                    <?php
                   $products = product_list($transaction->cart_id);
                 ?>
                 @foreach($products as $product)
                   # {{ $product->name_product }} ({{$product->qty}})<br>
                 @endforeach
-              </td>
-              <td class="total-amount" data-title="Total"><span>@currency($transaction->total)</span></td>
-              <td class="total-amount" data-title="Total"><span>{{ $transaction->status }}</span></td>
-              @if($transaction->status == "DITERIMA" || $transaction->status == "DITOLAK")
-              <td class="total-amount" data-title="Total">
-                <a href="products" class="btn-transaksi">BELI LAGI</a>
-              </td>
-              @else
-            <td class="total-amount" data-title="Total">
-              {{-- <a href="konfirmasi-transaction/{{ $transaction->id }}" class="btn" style="width: 100%; color: white; text-align: center">Barang Sudah Sampai</a> --}}
-              @if($transaction->status == "DIKIRIM")
-              <a href="lacak-order/{{ base64_encode($transaction->nota) }}" class="btn-transaksi cekResi" style="background: #424646">Lacak Pesanan</a>
-              <a href="javascript:void(0)" data-id="{{ $transaction->id }}" type="button" class="btn-transaksi sudahSampai">Pesanan Diterima</a>
-              @elseif($transaction->status == "MENUNGGU PEMBAYARAN")
-              <a href="payment?nota={{$transaction->nota}}" class="btn-transaksi sudahSampai">BAYAR SEKARANG</a>
-              @else
-              <a href="javascript:void(0)" data-id="{{ $transaction->id }}" type="button" class="btn-transaksi sudahSampai" style="background: rgba(0,0,0,.26) !important" disabled>Pesanan Diterima</a>
-              @endif
-            </td>
-            @endif
-          </tr>
-          @endforeach
+                  </div>
+                  <div class="col-md-2 col-2">
+                    @currency($transaction->total)
+                  </div>
+                  <div class="col-md-2 col-2">
+                    {{ $transaction->status }}
+                  </div>
+                  <div class="col-md-3 col-3">
+                    @if($transaction->status == "DITERIMA" || $transaction->status == "DITOLAK")
+                    <a href="products" class="btn-transaksi">BELI LAGI</a>
+                    @elseif($transaction->status == "DIKIRIM")
+                    <a href="lacak-order/{{ base64_encode($transaction->nota) }}" class="btn-transaksi cekResi" style="background: #424646">Lacak</a>
+                    <a href="javascript:void(0)" data-id="{{ $transaction->id }}" type="button" class="btn-transaksi sudahSampai">Pesanan Diterima</a>
+                    @elseif($transaction->status == "MENUNGGU PEMBAYARAN")
+                    <a href="payment?nota={{$transaction->nota}}" class="btn-transaksi sudahSampai">BAYAR SEKARANG</a>
+                    @else
+                    <a href="javascript:void(0)" data-id="{{ $transaction->id }}" type="button" class="btn-transaksi" style="background: rgba(0,0,0,.26) !important" disabled>Pesanan Diterima</a>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              @endforeach
             @else
-            <td colspan="5" align="center">Anda belum pernah melakukan transaksi</td>
+            <div class="col-md-12 content-box">
+              Anda belum pernah melakukan transaksi
+            </div>
             @endif
-          </tbody>
-        </table>
+            </div>
         </div>
       </div>
     </div>

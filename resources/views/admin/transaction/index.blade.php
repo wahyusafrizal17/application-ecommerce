@@ -21,7 +21,7 @@
                    <div class="card-header">
                       <div class="row">
                          <div class="col-md-6">
-                            <h5 class="card-title">Pesanan yang belum di kirim</h5>
+                            <h5 class="card-title">Data pesanan</h5>
                          </div>
                       </div>
                    </div>
@@ -103,11 +103,11 @@
 
  <div class="modal fade" id="run-topup-bypass-modal" tabindex="-1" aria-labelledby="run-topup-bypass-modalLabel" aria-hidden="true" data-backdrop="static">
    <div class="modal-dialog" style="position: absolute;top: 160px;right: 438px;">
-     <div class="modal-content">
-       <div class="modal-body text-center">
-         <div id="run-topup-bypass-modal-content"></div>
+      <div class="modal-content" style="width: 415px;border: none;background: transparent">
+         <div class="modal-body text-center" style="padding-top: 20px; background: transparent">
+           <img src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="">
+         </div>
        </div>
-     </div>
    </div>
  </div>
 @endsection
@@ -150,7 +150,6 @@ $(document).ready(function() {
         beforeSend: function() {
         $('#run-topup-bypass-modal').modal('show');
         $('#run-topup-bypass-modal').find('.close').attr('disabled', true);
-        $('#run-topup-bypass-modal-content').html('<p class="mt-3">Data sedang diprosess, mohon jangan tutup halaman ini.</p>');
         $("#exampleModal").modal('toggle');
          },
         success: function(data){

@@ -19,8 +19,11 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('administrator')->group(function () {
     Route::get('dashboard','Admin\DashboardController@index')->name('admin.dashboard');
+    Route::post('category/delete', 'Admin\CategoryController@delete')->name('category.delete');
     Route::resource('category','Admin\CategoryController');
+    Route::post('card/delete', 'Admin\CardController@delete')->name('card.delete');
     Route::resource('card','Admin\CardController');
+    Route::post('product/delete', 'Admin\ProductController@delete')->name('product.delete');
     Route::resource('product','Admin\ProductController');
     Route::resource('sales','Admin\SalesController');
     Route::resource('contact','Admin\ContactController');
@@ -50,6 +53,7 @@ Route::prefix('administrator')->group(function () {
 
     Route::get('laporan', 'Admin\TransactionController@laporanIndex')->name('laporan.index');
     Route::get('laporan/export', 'Admin\TransactionController@laporanExport')->name('laporan.export');
+    Route::get('laporan/print/{id}', 'Admin\TransactionController@laporanPrint')->name('laporan.print');
 
     Route::get('transaction', 'Admin\TransactionController@index')->name('transaction.index');
     Route::get('transaction/{nota}/preview', 'Admin\TransactionController@preview')->name('transaction.preview');
@@ -83,6 +87,7 @@ Route::post('upload-bukti-transfer', 'Frontend\TransactionController@UploadBukti
 
 // ---------------- Profile ------------------------------
 Route::get('profile', 'WelcomeController@profile')->name('profile.index');
+Route::put('profile/{id}', 'WelcomeController@profileUpdate')->name('profile.update');
 
 });
 

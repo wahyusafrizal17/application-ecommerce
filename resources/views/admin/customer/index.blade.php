@@ -23,7 +23,6 @@
                                   <th style="width: 5%">No</th>
                                   <th>Nama</th>
                                   <th>Email</th>
-                                  <th>Gambar</th>
                                </tr>
                             </thead>
                             <tbody>
@@ -32,7 +31,6 @@
                                   <td>{{ $loop->iteration }}</td>
                                   <td>{{ $customer->name}}</td>
                                   <td>{{ $customer->email}}</td>
-                                  <td></td>
                                </tr>
                                @endforeach
                             </tbody>

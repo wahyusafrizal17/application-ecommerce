@@ -86,6 +86,9 @@
 .shop.checkout .single-widget.get-button .btn{
     margin-top: 10px;
 }
+.padding-shop{
+    margin-top: 0;
+}
 }
 
 @media(min-width:424px) {
@@ -173,5 +176,8 @@
 }
 .shop.checkout .single-widget.get-button .btn{
     margin-top: 0;
+}
+.padding-shop{
+    margin-top: -75px;
 }
 }

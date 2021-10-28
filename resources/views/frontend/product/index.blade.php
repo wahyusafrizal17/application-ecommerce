@@ -29,7 +29,7 @@
 </div>
 <!-- End Breadcrumbs -->
 <!-- Product Style -->
-<section class="product-area shop-sidebar shop section">
+<section class="product-area shop-sidebar shop section padding-shop">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-12">

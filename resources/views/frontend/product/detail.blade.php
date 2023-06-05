@@ -48,7 +48,7 @@
                         </div>
                         <span>terjual : {{ (!empty(hitung_stok_product_keluar($product->id)[0]->qty)) ? hitung_stok_product_keluar($product->id)[0]->qty : 0 }}</span>
                         <br>
-                        <h3 style="color: #F7941D">@currency($product->sell_price)</h3>
+                        <h3 style="color: #2979ff">@currency($product->sell_price)</h3>
 						<div class="quickview-peragraph">
                         <span style="font-weight: bold;">Deskripsi :</span>
                         <div class="mt-3" style="padding-left: 12px;margin-top: -15px;">

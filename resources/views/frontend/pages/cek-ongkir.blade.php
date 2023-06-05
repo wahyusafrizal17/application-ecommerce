@@ -114,7 +114,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputPassword1"></label>
-                    <button type="submit" class="btn" id="send-data" style="margin-top: 31px;background: #F7941D;">SUBMIT</button>
+                    <button type="submit" class="btn" id="send-data" style="margin-top: 31px;background: #2979ff;">SUBMIT</button>
                   </div>
                 </div>
               </div>
@@ -157,7 +157,7 @@
                   <p>{{ $cost->description }}</p>
                 </td>
                 <td style="padding-top: 20px !important;">
-                  <span style="font-size: 20px !important;color: #F7941D;font-weight: bold;">@currency($cost->cost[0]->value)</span>
+                  <span style="font-size: 20px !important;color: #2979ff;font-weight: bold;">@currency($cost->cost[0]->value)</span>
                 </td>
               </tr>
               @endforeach

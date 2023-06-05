@@ -88,7 +88,7 @@
 										@endforeach
 
 										<div class="col-md-12 text-center mt-5">
-											<a href="/products" class="btn" style="background: #F7941D;color: white">LIHAT SEMUA PRODUK</a>
+											<a href="/products" class="btn" style="background: #2979ff;color: white">LIHAT SEMUA PRODUK</a>
 										  </div>
 									</div>
 								</div>

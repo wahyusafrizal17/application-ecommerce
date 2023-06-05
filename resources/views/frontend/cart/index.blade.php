@@ -35,7 +35,7 @@
         <div class="checkout-form">
           <div class="myBox">
             <table class="table table-bordered list-ongkir">
-              <tr align="center" style="background-color: #F7941D;color: white">
+              <tr align="center" style="background-color: #2979ff;color: white">
                 <th>Product</th>
                 <th>Name</th>
                 <th>Qty</th>

@@ -74,7 +74,7 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-1 col-form-label"></label>
             <div class="col-sm-10">
-              <button type="submit" class="btn" style="float: right;background: #F7941D;border-radius: 20px;">SUBMIT</button>
+              <button type="submit" class="btn" style="float: right;background: #2979ff;border-radius: 20px;">SUBMIT</button>
             </div>
           </div>
         </div>   

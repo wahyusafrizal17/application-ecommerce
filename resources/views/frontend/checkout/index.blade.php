@@ -25,7 +25,7 @@
         <div class="checkout-form">
           <div class="myBox">
           <table class="table table-bordered list-ongkir">
-            <tr style="background-color: #F7941D;color: white">
+            <tr style="background-color: #2979ff;color: white">
               <th>Produk</th>
               <th>Nama produk</th>
               <th>Jumlah</th>

@@ -7,8 +7,8 @@
     display: flex;
   }
   .page-item.active .page-link{
-    background-color: #F7941D;
-    border-color: #F7941D;
+    background-color: #2979ff;
+    border-color: #2979ff;
   }
 </style>
 

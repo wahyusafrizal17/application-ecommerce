@@ -12,7 +12,7 @@ $pengaturan = App\Models\Setting::find(1);
 ?>
 <body style="font-family: Helvetica,arial,sans-serif;font-size: 20px;">
     <div>
-      <div style="text-align:center;background: #F7941D;padding: 18px;text-transform: uppercase">
+      <div style="text-align:center;background: #2979ff;padding: 18px;text-transform: uppercase">
         PESANAN BARU DARI {{ $checkout->user->name }}
       </div>
       <div style="font-size: 15px;border: 2px solid black;padding: 25px;border-style: dashed;">
@@ -24,7 +24,7 @@ $pengaturan = App\Models\Setting::find(1);
 
           <div style="padding: 15px">
             <table border="1" width="100%" cellspacing="0">
-              <tr style="background: #F7941D;">
+              <tr style="background: #2979ff;">
                 <th style="padding: 10px;">NO</th>
                 <th style="padding: 10px;">Produk</th>
                 <th style="padding: 10px;">Harga</th>

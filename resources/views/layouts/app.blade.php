@@ -74,7 +74,7 @@
 						<div class="col-lg-2 col-md-2 col-12">
 							<!-- Logo -->
 							<div class="logo">
-								<a href="/"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" class="img-logo" alt=""></a>
+								<a href="/"><img src="{{ asset('assets/img/setting/'.$pengaturan->logo) }}" class="img-logo" alt="" style="width: 80px"></a>
 							</div>
 							<!--/ End Logo -->
 							<!-- Search Form -->

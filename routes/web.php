@@ -19,12 +19,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('administrator')->group(function () {
     Route::get('dashboard','Admin\DashboardController@index')->name('admin.dashboard');
-    Route::post('category/delete', 'Admin\CategoryController@delete')->name('category.delete');
     Route::resource('category','Admin\CategoryController');
-    Route::post('card/delete', 'Admin\CardController@delete')->name('card.delete');
+    Route::post('category/delete', 'Admin\CategoryController@delete')->name('category.delete');
     Route::resource('card','Admin\CardController');
-    Route::post('product/delete', 'Admin\ProductController@delete')->name('product.delete');
+    Route::post('card/delete', 'Admin\CardController@delete')->name('card.delete');
     Route::resource('product','Admin\ProductController');
+    Route::post('product/delete', 'Admin\ProductController@delete')->name('product.delete');
     Route::resource('sales','Admin\SalesController');
     Route::resource('contact','Admin\ContactController');
     Route::resource('user','Admin\UserController');

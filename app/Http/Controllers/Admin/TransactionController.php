@@ -112,7 +112,7 @@ class TransactionController extends Controller
 
         $data['setting'] = Setting::find(1);
 
-        $pdf = PDF::loadView('admin.laporan.export', $data);
+        $pdf = PDF::loadview('admin.laporan.export', $data);
         return $pdf->stream();
     }
 
@@ -129,7 +129,7 @@ class TransactionController extends Controller
 
         $data['setting'] = Setting::find(1);
 
-        $pdf = PDF::loadView('admin.laporan.print', $data);
+        $pdf = PDF::loadview('admin.laporan.print', $data);
         return $pdf->stream();
     }
 }

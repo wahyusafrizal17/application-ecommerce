@@ -18,7 +18,7 @@ class CardController extends Controller
     public function index()
     {
         $data['cards'] = Card::all();
-        return view('Admin.card.index',$data);
+        return view('admin.card.index',$data);
     }
 
     /**
@@ -28,7 +28,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        return view('Admin.card.create');
+        return view('admin.card.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class CardController extends Controller
     public function edit($id)
     {
         $data['card'] = Card::find($id);
-        return view('Admin.card.edit',$data);
+        return view('admin.card.edit',$data);
     }
 
     /**

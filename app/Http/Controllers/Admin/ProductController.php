@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $data['products'] = Product::all();
-        return view('Admin.product.index',$data);
+        return view('admin.product.index',$data);
     }
 
     /**
@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function create()
     {
         $data['categories'] = Category::pluck('name_category','id');
-        return view('Admin.product.create',$data);
+        return view('admin.product.create',$data);
     }
 
     /**
@@ -80,7 +80,7 @@ class ProductController extends Controller
     {
         $data['categories'] = Category::pluck('name_category','id');
         $data['product'] = Product::find($id);
-        return view('Admin.product.edit',$data);
+        return view('admin.product.edit',$data);
     }
 
     /**

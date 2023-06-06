@@ -62,7 +62,7 @@
 	
 	<!-- Get Pro Button -->
     <ul class="pro-features">
-		<a class="get-pro" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 10) }}8&text=Saya%20ingin%20order." target="_blank">Chat</a>
+		<a class="get-pro" href="https://api.whatsapp.com/send?phone=62{{ substr($pengaturan->phone, 1, 11) }}&text=Saya%20ingin%20order." target="_blank">Chat</a>
 	  </ul>
 	  <!-- Header -->
 	  <header class="header shop">

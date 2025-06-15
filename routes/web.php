@@ -120,3 +120,6 @@ Route::prefix('pages')->group(function () {
     Route::post('contact-us', 'ContactUsController@contactUs')->name('contact-us');
     Route::get('mail-successfull', 'ContactUsController@mailSuccessfull')->name('mail-success');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

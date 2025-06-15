@@ -36,7 +36,7 @@
                                   <td>{{ $category->name_category}}</td>
                                  <td>
                                      <div class="form-button-action">
-                                        <a href="{{ route('category.edit',['id'=>$category->id]) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
+                                        <a href="{{ route('category.edit', $category->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
                                            <i class="fa fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-link btn-danger delete" data-id="{{ $category->id }}">

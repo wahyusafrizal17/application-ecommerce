@@ -54,7 +54,7 @@
                                        <button class="btn btn-link btn-primary tambah-stok" data-id="{{ $product->id }}" type="button" data-toggle="modal" data-target="#exampleModal">
                                           <i class="fa fa-plus"></i>
                                         </button>
-                                        <a href="{{ route('product.edit',['id'=>$product->id]) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lsm" data-original-title="Edit">
+                                        <a href="{{ route('product.edit',$product->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lsm" data-original-title="Edit">
                                            <i class="fa fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-link btn-danger delete" data-id="{{ $product->id }}">

@@ -6,7 +6,7 @@
         <div class="page-inner">
             <div class="row">
                 <div class="col-md-8">
-                    {{ Form::model($pengaturan,['url'=>route('setting.update',['id'=>$pengaturan->id]),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
+                    {{ Form::model($pengaturan,['url'=>route('setting.update', $pengaturan->id),'class'=>'form-horizontal','method'=>'PUT','files'=>true])}}
                     <div class="card card-with-nav">
                         <div class="card-body">
                             <div class="row mt-3">

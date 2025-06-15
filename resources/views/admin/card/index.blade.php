@@ -38,7 +38,7 @@
                                   <td>{{ $card->number_card}}</td>
                                   <td>
                                      <div class="form-button-action">
-                                        <a href="{{ route('card.edit',['id'=>$card->id]) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
+                                        <a href="{{ route('card.edit', $card->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
                                            <i class="fa fa-edit"></i>
                                         </a>
                                         <button type="button" class="btn btn-link btn-danger delete" data-id="{{ $card->id }}">

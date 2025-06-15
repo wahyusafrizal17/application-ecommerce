@@ -91,10 +91,13 @@ class TransactionController extends Controller
 
     public function laporanIndex()
     {
-        $data['model'] = \DB::select('select t.id, t.created_at, t.nota, t.total, u.name, c.ongkir, c.subtotal
-        from transactions as t
-        join checkouts as c ON c.id = t.checkout_id
-        join users as u ON u.id = c.user_id GROUP BY t.created_at DESC');
+        $data['model'] = \DB::select('
+                            select t.id, t.created_at, t.nota, t.total, u.name, c.ongkir, c.subtotal
+                            from transactions as t
+                            join checkouts as c ON c.id = t.checkout_id
+                            join users as u ON u.id = c.user_id
+                            ORDER BY t.created_at DESC
+                        ');
 
         return view('admin.laporan.index', $data);
     }

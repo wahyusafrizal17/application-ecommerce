@@ -330,8 +330,8 @@
 	{{-- <script src="{{ asset('js/onepage-nav.min.js') }}"></script> --}}
 	<script src="{{ asset('js/easing.js') }}"></script>
 	<script src="{{ asset('js/active.js') }}"></script>
-	 <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+	 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        @include('sweetalert::alert')
 	@stack('scripts')
-	@include('sweet::alert')
   </body>
 </html>

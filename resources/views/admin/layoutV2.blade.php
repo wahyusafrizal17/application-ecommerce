@@ -396,6 +396,8 @@
         <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
         <script src="{{ asset('assets/js/atlantis2.min.js') }}"></script>
         {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        @include('sweetalert::alert')
 		@stack('scripts')
 
 		<script>
@@ -415,6 +417,6 @@
 				theme: "bootstrap"
 			});
 		</script>
-		@include('sweet::alert')
+		{{-- @include('sweet::alert') --}}
     </body>
     </html>

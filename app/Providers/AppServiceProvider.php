@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // https://bit.ly/2GrTNIC
         if ($this->app->environment() == 'local') {
-            $this->app->register('Kurt\Repoist\RepoistServiceProvider');
+            // $this->app->register('Kurt\Repoist\RepoistServiceProvider');
         }
     }
 

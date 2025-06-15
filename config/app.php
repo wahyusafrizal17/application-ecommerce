@@ -165,8 +165,9 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Codedge\Fpdf\FpdfServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        Zizaco\Entrust\EntrustServiceProvider::class,
+        // Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Package Service Providers...

@@ -39,10 +39,10 @@
                                   <td>{{ $user->email}}</td>
                                   <td>
                                      <div class="form-button-action">
-                                        <a href="{{ route('user.edit',['id'=>$user->id]) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
+                                        <a href="{{ route('user.edit', $user->id) }}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit">
                                            <i class="fa fa-edit"></i>
                                         </a>
-                                        {{ Form::open(['url'=>route('user.destroy',['id'=>$user->id]),'method'=>'delete'])}}
+                                        {{ Form::open(['url'=>route('user.destroy', $user->id),'method'=>'delete'])}}
                                          <button  data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Delete" type="submit">
                                            <i class="fa fa-times"></i>
                                          </button>
